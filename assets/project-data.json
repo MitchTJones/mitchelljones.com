@@ -114,6 +114,16 @@
 		"desc":"The official wallet for the cryptocurrency Locke.",
 		"link":"https://lockepocket.com"
 	},
+	"site": {
+		"title":"mitchelljones.com",
+		"desc":"The GitHub repository for this site.",
+		"link":"https://github.com/MitchTJones/mitchelljones.com"
+	},
+	"blocktrack": {
+		"title":"Block Track",
+		"desc":"Live updating cryptocurrency price tracker",
+		"link":""
+	},
 	"processing": {
 		"template":"project",
 		"title":"Processing",
@@ -138,19 +148,14 @@
 			}
 		]
 	},
-	"blocktrack": {
-		"title":"Block Track",
-		"desc":"Live updating cryptocurrency price tracker",
-		"link":""
-	},
 	"lowpoly": {
 		"title":"Low Poly",
 		"desc":"A JavaScript low-poly image generator.",
 		"link":""
-	},
-	"ap": {
-		"title":"AP Final Project",
-		"desc":"A 3D multiplayer shooter game in Unity.",
-		"link":""
 	}
+	// "ap": {
+	// 	"title":"AP Final Project",
+	// 	"desc":"A 3D multiplayer shooter game in Unity.",
+	// 	"link":""
+	// }
 }
