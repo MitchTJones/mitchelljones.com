@@ -1,0 +1,354 @@
+int state = 1;
+final int MAIN_MENU = 1;
+final int GAME = 2;
+final int PAUSE = 3;
+
+final color[] colors = {#ff4fe7, #4fcdff, #5dff4f, #ff7200, #ff2626};
+//Menu variables
+Box[][] colorSel = new Box[4][5];
+boolean mouseClick = false;
+boolean wasMouseClicked = false;
+
+//Game variables
+boolean gameReady = false;
+boolean pause = false;
+Box[] players = new Box[4];
+
+int blockSpace = 15;
+int blockSize  = 13;
+
+int numBlockRows;
+int numBlockColumns;
+int numBlocks;
+
+int botBuffer = 25;
+
+int[] xBlocks;
+int[] yBlocks;
+
+void setup() {
+  size(1050, 510+botBuffer);
+  init();
+}
+
+void init() {
+  frameRate(200);
+  textAlign(CENTER);
+  rectMode(CENTER);
+  initializeGrid();
+  initializePlayers();
+}
+
+void draw() {
+  switch(state) {
+  case MAIN_MENU:
+    background(0);
+    textSize(50);
+    fill(255);
+    text("Snakelite", width/2, height/5);
+
+    boolean playMouseOver = mouseX > (width/2)-50 && mouseX < (width/2)+50 && mouseY > ((4*height/5)-15)-25 && mouseY < ((4*height/5)-15)+25;
+    if (playMouseOver) textSize(52);
+    else textSize(50);
+    text("Play", width/2, 4*height/5);
+    textSize(20);
+
+    for (int p = 0; p < players.length; p++) {
+      fill(255);
+      int x = (p+1)*width/5;
+      int y = 2*height/5;
+      boolean mouseOver = mouseX > x-38 && mouseX < x+38 && mouseY > (y-7)-11 && mouseY < (y-7)+11;
+      fill(players[p].col);
+      if (mouseOver)
+        textSize(22);
+      else
+        textSize(20);
+      if (!players[p].inGame)
+        fill(100);
+      text("Player "+(p+1), x, y);
+      for (int c = 0; c < colorSel[p].length; c++) {
+        int _x = (x+(colorSel[p].length*15))-((c+1)*25);
+        int _y = y+(height/25);
+        boolean _mouseOver = mouseX > _x - 10 && mouseX < _x+10 && mouseY > _y - 10 && mouseY < _y+10;
+        boolean selected  = players[p].col == colors[c];
+        if (_mouseOver || selected) {
+          stroke(255);
+        } else {
+          noStroke();
+        }
+        if (_mouseOver && mouseClick && !wasMouseClicked) {
+          if (isChosen(players, colors[c]) == 0) {
+            players[p].col = colors[c];
+          }
+        }
+        if (isChosen(players, colors[c]) != 0 && players[p].col != colors[c] || !players[p].inGame) {
+          fill(100);
+        } else {
+          fill(colors[c]);
+        }
+        rect(_x, _y, 20, 20);
+        if (isChosen(players, colors[c]) != 0 && isChosen(players, colors[c]) != p+1 && players[p].inGame) {
+          fill(255);
+          textSize(20);
+          text(isChosen(players, colors[c]), _x, _y+7);
+        }
+      }
+      if (mouseOver && mouseClick && !wasMouseClicked)
+        players[p].inGame = !players[p].inGame;
+      if (!players[p].inGame)
+        players[p].col = (255);
+    }
+    if (playMouseOver && mouseClick && !wasMouseClicked) {
+      for (int p = 0; p < players.length; p++) {
+        if (players[p].col == (255)) {
+          players[p].col = colors[p];
+        }
+      }
+      state = GAME;
+    }
+    break;
+
+
+  case GAME:
+    background(102);
+    fill(255);
+    noStroke();
+    for (int r = 0; r < numBlockRows; r++) {
+      for (int c = 0; c < numBlockColumns; c++) {
+        rect(xBlocks[c], yBlocks[r], blockSize, blockSize);
+      }
+    }
+    
+    stroke(0);
+    gameReady = true;
+    ArrayList<Integer> aliveCount = new ArrayList<Integer>();
+    for (int p = 0; p < players.length; p++) {
+      fill(players[p].col);
+      text(players[p].score, width-(20*(p+1)), 49*height/50);
+      if (players[p].inGame) {
+        if (!players[p].ready) {
+          gameReady = false;
+        }
+        if (players[p].alive) {
+          aliveCount.add(p);
+        }
+      }
+      if (checkCollision(p) != null) {
+        players[p].alive = false;
+      }
+    }
+    if (aliveCount.size() == 1) {
+      int winner = aliveCount.get(0);
+      players[winner].score++;
+      reset();
+    }
+    for (int p = 0; p < players.length; p++) {
+      if (players[p].inGame && players[p].alive) {
+        if (gameReady && !pause)
+          players[p].refresh();
+        if (!players[p].ready) {
+          fill(0);
+          textSize(20);
+          text("Not Ready", players[p].x, players[p].y-10);
+          text(players[p].controlDesc, players[p].x, players[p].y+25);
+        }
+        for (int d = 0; d < 4; d++) {
+          if (players[p]._direction[d] == true)
+            players[p].ready = true;
+        }
+
+        fill(players[p].col);
+        for (int s = 0; s < players[p].tail.size(); s++) {
+          rect(players[p].tail.get(s)[0], players[p].tail.get(s)[1], players[p].size/2, players[p].size/2);
+        }
+        rect(players[p].x, players[p].y, players[p].size, players[p].size);
+      }
+      fill(255);
+    }
+    break;
+  }
+  if (mouseClick) {
+    wasMouseClicked = true;
+  } else {
+    wasMouseClicked = false;
+  }
+}
+
+void keyPressed() {
+  for (int p = 0; p < players.length; p++) {
+    for (int k = 0; k < players[p].controls.length; k++) {
+      if (keyCode == players[p].controls[k])
+        players[p].setDirection(k);
+    }
+  }
+}
+
+void mousePressed() {
+  mouseClick = true;
+}
+void mouseReleased() {
+  mouseClick = false;
+}
+
+void initializeGrid() {
+  int _height = height-botBuffer;
+  int _width = width;
+  numBlockRows = (_height/blockSpace)-1;
+  numBlockColumns = (_width/blockSpace)-1;
+  xBlocks = new int[numBlockColumns];
+  yBlocks = new int[numBlockRows];
+
+  for (int c = 0; c < numBlockColumns; c++) {
+    xBlocks[c] = (c+1)*blockSpace;
+  }
+  for (int r = 0; r < numBlockRows; r++) {
+    yBlocks[r] = (r+1)*blockSpace;
+  }
+}
+
+void initializePlayers() {
+  for (int p = 0; p < players.length; p++) {
+    players[p] = new Box();
+    players[p].size = 10;
+    players[p].col = (255);
+    players[p].inGame = true;
+    players[p].ready = false;
+    players[p].alive = true;
+    players[p].blockSpace = blockSpace;
+  }
+  resetLoc();
+  players[0].controls = new int[] {37, 39, 38, 40};   //Left,Right,Up,Down
+  players[0].controlDesc = "Arrow Keys";
+  players[1].controls = new int[] {65, 68, 87, 83};   //A,D,W,S
+  players[1].controlDesc = "W A S D";
+  players[2].controls = new int[] {71, 74, 89, 72};   //G,J,Y,H
+  players[2].controlDesc = "Y G H J";
+  players[3].controls = new int[] {76, 222, 80, 186}; //L,',P,;
+  players[3].controlDesc = "P L ; '";
+}
+
+void reset() {
+  gameReady = false;
+  for (int p = 0; p < players.length; p++) {
+    if (players[p].inGame) {
+      players[p].ready = false;
+      players[p].alive = true;
+      boolean[] emptyDir = new boolean[4];
+      for (int i = 0; i < emptyDir.length; i++) {
+        players[p]._direction[i] = emptyDir[i];
+        players[p].direction[i] = emptyDir[i];
+      }
+      players[p].tail.clear();
+    }
+  }
+  resetLoc();
+}
+
+void resetLoc() {
+  if (players.length < 3) {
+    players[0].x = xBlocks[18];
+    players[0].y = yBlocks[17];
+    players[1].x = xBlocks[53];
+    players[1].y = yBlocks[17];
+  } else {
+    players[0].x = xBlocks[18];
+    players[0].y = yBlocks[9];
+    players[1].x = xBlocks[18];
+    players[1].y = yBlocks[26];
+    players[2].x = xBlocks[53];
+    players[2].y = yBlocks[9];
+    players[3].x = xBlocks[53];
+    players[3].y = yBlocks[26];
+  }
+}
+
+int isChosen(Box[] players, color col) {
+  for (int p = 0; p < players.length; p++) {
+    if (players[p].col == col) {
+      return p+1;
+    }
+  }
+  return 0;
+}
+
+String checkCollision(int p) {
+  if (players[p].x < 0+blockSpace || players[p].x > width-blockSpace || players[p].y < 0+blockSpace || players[p].y > height-blockSpace-botBuffer) {
+    return "Wall";
+  }
+  for (int _p = 0; _p < players.length; _p++) {
+    for (int s = 0; s < players[_p].tail.size(); s++) {
+      if (_p != p && players[_p].alive && players[_p].inGame) {
+        if (players[p].x == players[_p].tail.get(s)[0] && players[p].y == players[_p].tail.get(s)[1]) {
+          return "Player "+_p;
+        }
+      }
+    }
+  }
+  for (int s = 0; s < players[p].tail.size(); s++) {
+    if (s < players[p].tail.size()-1) {
+      if (players[p].x == players[p].tail.get(s)[0] && players[p].y == players[p].tail.get(s)[1]) {
+        return "Self";
+      }
+    }
+  }
+  return null;
+}
+
+public class Box {
+  public int x;
+  public int y;
+  public boolean inGame;
+  public boolean alive;
+  public boolean ready;
+  public boolean[] direction = new boolean[4];
+  public boolean[] _direction = new boolean[4];
+  public int size;
+  public int[] borders = new int[4];
+  public int score;
+  public color col;
+  public ArrayList<int[]> tail = new ArrayList<int[]>();
+  public int[] controls;
+  public String controlDesc;
+  
+  public int blockSpace;
+  
+  void setDirection(int dir) {
+    if ((dir == 1 && direction[0]) || (dir == 0 && direction[1]) || (dir == 2 && direction[3]) || (dir == 3 && direction[2]))
+      return; 
+    for (int i = 0; i < _direction.length; i++) {
+      if (i == dir) {
+        _direction[i] = true;
+      } else {
+        _direction[i] = false;
+      }
+    }
+  }
+  
+  void refresh() {
+    move();
+    if (direction != _direction) {
+      if (x%blockSpace == 0 && y%blockSpace == 0) {
+        int[] segment = {x,y};
+        tail.add(segment);
+        for (int i = 0; i < direction.length; i++) {
+          direction[i] = _direction[i];
+        }
+      }
+    }
+  }
+  
+  void move() {
+    if (direction[0]) {
+      x--;
+    }
+    if (direction[1]) {
+      x++;
+    }
+    if (direction[2]) {
+      y--;
+    }
+    if (direction[3]) {
+      y++;
+    }
+  }
+}

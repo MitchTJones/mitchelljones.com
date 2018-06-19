@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+@font-face {
+	font-family: 'Ikaros';
+	src: url('/fonts/Ikaros/Ikaros-Regular.otf');
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Thin 100.ttf');
+	font-weight:100;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Extra-Light 200.ttf');
+	font-weight:200;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Light 300.ttf');
+	font-weight:300;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Normal 400.ttf');
+	font-weight:400;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Medium 500.ttf');
+	font-weight:500;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Semi-Bold 600.ttf');
+	font-weight:600;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Bold 700.ttf');
+	font-weight:700;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Extra-Bold 800.ttf');
+	font-weight:800;
+}
+@font-face {
+	font-family: 'Mosk';
+	src: url('/fonts/Mosk/Mosk Ultra-Bold 900.ttf');
+	font-weight:900;
+}
+
+body {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	background-color:white;
+	font-family: 'Lato';
+	font-size: 112.5%;
+}
+
+h1 {
+	font-size:2em;
+}
+
+section {
+	width:100%;
+	padding:50px;
+}
+ 
+#random img {
+	position:absolute;
+	left:50%;
+	width:50px;
+	height:50px;
+	margin-top:5px;
+	margin-left:-25px;
+	cursor:pointer;
+}
+
+#top {
+	height:50vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+	color:white;
+}
+
+#blurb {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+#blurb > h1 {
+	font-size:7.5vw;
+	font-family: 'Mosk';
+	text-transform:uppercase;
+	font-weight:800;
+}
+
+#blurb > nav {
+	width:100%;
+	max-width:700px !important;
+}
+
+#blurb .navbar-nav {
+	-webkit-box-orient: horizontal !important;
+	-webkit-box-direction: normal !important;
+	-webkit-flex-direction: row !important;
+	-ms-flex-direction: row !important;
+	flex-direction: row !important;
+	justify-content:space-around !important;
+}
+
+#blurb .nav-link {
+	font-size:23px;
+	padding-right: .5rem !important;
+	padding-left: .5rem !important;
+}
+
+.mosk {
+	font-family: 'Mosk';
+}
+
+hr {
+	width:35px;
+	height:3px;
+	background-color:black;
+	border:0;
+}
+
+#abt-demo {
+	padding:5px 0 0 10px;
+	z-index:1;
+}
+
+#projects {
+	background-color:white;
+}
+
+#hexGrid {
+	position:relative !important;
+	z-index:2 !important;
+}
+
+#about {
+	/*clip-path: polygon(0 0, 100% 2vw, 100% calc(100% - 2vw), 0 100%);*/
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-direction:row;
+	padding-top:100px;
+	padding-bottom:100px;
+	position:relative;
+}
+
+#about img {
+	width:500px;
+	max-width:80%;
+	margin: 0 40px 0 40px;
+}
+
+#etc {
+	padding:25vh 0 25vh 0;
+}
+
+#contact {
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: 30px !important;
+}
+
+.jumbotron {
+	padding:1rem !important;
+	background-color:rgba(236,238,239,0.8);
+}
+
+.c-item {
+	padding:7px;
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
+}
+
+.profilepic > img {
+	height:175px;
+	width:175px;
+	border-radius:5px;
+	margin-right:10px;
+}
+
+.contactinfo {
+	margin-left:10px;
+}
+
+.contactinfo > h2 {
+	font-size:45px;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+
+.contactinfo > p {
+	line-height:10px;
+}
+
+@media only screen and (min-width: 1150px) {
+	.abt {
+		max-width:1050px;
+	}
+}
+
+@media only screen and (max-width: 1150px) {
+	#about {
+		flex-direction:column;
+	}
+	#about img {
+		margin: 0 0 40px 0;
+	}
+}
+
+@media only screen and (max-width: 770px) {
+	#blurb > h1 {
+		font-size:7.8vw;
+	}
+	#blurb .navbar-nav {
+		font-size:2.8vw;
+	}
+	#blurb .nav-link {
+		font-size:3.75vw;
+	}
+	#projects {
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.contactinfo > h2 {
+		font-size:37px;
+	}
+}
+
+
+@media only screen and (max-width: 550px) {
+	#contact {
+		padding:20px !important;
+	}
+	.contactinfo > h2 {
+		font-size:30px;
+	}
+	.contactinfo > p {
+		font-size: 0.8em;
+		line-height: 4px;
+	}
+	.profilepic > img {
+		height:125px;
+		width:125px;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	#contact {
+		padding:15px !important;
+	}
+	.contactinfo > h2 {
+		font-size:1.1em;
+		margin-bottom:15px;
+	}
+	.contactinfo > p {
+		font-size: 0.6em;
+		line-height: 0.1px;
+	}
+	.profilepic > img {
+		height:100px;
+		width:100px;
+	}
+}

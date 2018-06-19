@@ -1,0 +1,56 @@
+<html>
+<head>
+	<script src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous'></script>
+	<title>JS Demo: Vector Fields</title>
+	<script type='text/javascript' src='https://ajax.cloudflare.com/cdn-cgi/scripts/935cb224/cloudflare-static/rocket.min.js'></script>
+	<link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+<body>
+	<div id='canvascontainer'>
+		<canvas id='canvas'></canvas>
+	</div>
+	<div id='tools' class='tools noselect topright'>
+		<div class='hover'><input type='checkbox' id='tooltoggle' class='topright' /><label for='tooltoggle'></label></div>
+		<div class='toolslist' style='display:none'>
+			<div class='hover'><input type='button' id='tool_reset' name='tool' /><label for='tool_reset'></label></div>
+			<div class='hover'><input type='radio' id='tool_pull' name='tool' checked /><label for='tool_pull'></label></div>
+			<div class='hover'><input type='radio' id='tool_push' name='tool' /><label for='tool_push'></label></div>
+			<div class='hover'><input type='radio' id='tool_twist' name='tool' /><label for='tool_twist'></label></div>
+			<div class='hover'><input type='checkbox' id='tool_freeze' name='tool' /><label for='tool_freeze'></label></div>
+			<div class='hover'><input type='checkbox' id='tool_infinity' name='tool' /><label for='tool_infinity'></label></div>
+		</div>
+	</div>
+	<script>
+		var isReset = false;
+		$('#tooltoggle').change(function() {
+			$('.toolslist').toggle();
+		});
+		$('#tool_pull').change(function() {
+			tool = PULL;
+		});
+		$('#tool_push').change(function() {
+			tool = PUSH;
+		});
+		$('#tool_twist').change(function() {
+			tool = TWIST;
+		});
+		$('#tool_freeze').change(function() {
+			frozen = !frozen;
+		});
+		$('#tool_reset').click(function() {
+			isReset = true;
+		});
+		$('#tool_infinity').change(function() {
+			holeG = !holeG;
+		});
+		var hovering = false;
+		$('.hover').hover(function() {
+			hovering=true;
+		}, function() {
+			hovering = false;
+		});
+	</script>
+	<script src='/js/functions.js'></script>
+	<script src='vectors.js'></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+int state = 0;
+final int MAIN_MENU = 0;
+final int GAME = 1;
+
+Ball[] balls = new Ball[0];
+Box playSpace;
+
+int xBuffer = 9;
+int yBuffer = 9;
+float[] borders = new float[4];
+
+int rowSize = 8;
+int colSize = 11;
+int blockSpace = 49;
+int blockSize = 45;
+ArrayList<Block[]> blocks = new ArrayList<Block[]>();
+
+int playerSize = 25;
+
+PVector player = new PVector();
+PVector origin = new PVector();
+PVector mouse = new PVector();
+
+boolean wasMousePressed;
+
+int ballNo = 1;
+int _ballNo = ballNo;
+boolean[] active = new boolean[ballNo];
+int activeCount;
+int ballSize = 15;
+
+boolean inProgress = false;
+
+float diffX;
+float diffY;
+
+int level = 1;
+
+color bg = color(50);
+color fg = color(125);
+
+void setup() {
+  size(xBuffer*2+(blockSpace*(rowSize)), yBuffer*2+(blockSpace*colSize));
+  init();
+}
+
+void init() {
+  frameRate(1000);
+  ellipseMode(CENTER);
+  rectMode(CENTER);
+  shapeMode(CENTER);
+  player.x = width/2;
+  player.y = (height-yBuffer)-playerSize/2;
+  playSpace = new Box(width/2, height/2, width-xBuffer*2, height-yBuffer*2);
+  borders[0] = playSpace.y-playSpace.ySize/2; //TOP
+  borders[1] = playSpace.y+playSpace.ySize/2; //BOTTOM
+  borders[2] = playSpace.x-playSpace.xSize/2; //LEFT
+  borders[3] = playSpace.x+playSpace.xSize/2; //RIGHT
+  nextLevel(level);
+}
+
+void draw() {
+  switch(state) {
+  case MAIN_MENU:
+    drawMenu();
+    break;
+  case GAME:
+    drawGame();
+    break;
+  }
+  if (mousePressed) {
+    wasMousePressed = true;
+  } else {
+    wasMousePressed = false;
+  }
+}
+
+void launch(int n, float xS, float yS) {
+  inProgress = true;
+  balls = new Ball[n];
+  for (int i = 0; i < n; i++) {
+    balls[i] = new Ball(player.x, player.y, xS, yS, ballSize, #ffffff, borders);
+  }
+  balls[0].active = true;
+}
+
+void nextLevel(int l) {
+  ballNo = _ballNo;
+  for (int r = 0; r < blocks.size(); r++) {
+    for (int i = 0; i < blocks.get(l-2).length; i++) {
+      blocks.get(r)[i].y += blockSpace;
+    }
+  }
+  Block[] level = new Block[rowSize];
+  for (int i = 0; i < rowSize; i++) {
+    int x = xBuffer+(i+1)*blockSpace-blockSpace/2;
+    int y = yBuffer+3*blockSpace/2;
+    level[i] = new Block(x, y, blockSize, l, "block");
+  }
+  ArrayList<Integer> inactive = new ArrayList<Integer>();
+  for (int i = 0; i < 3; i++) {
+    int ran = (int)random(rowSize);
+    level[ran].active = false;
+    if (!inactive.contains(ran)) {
+      inactive.add(ran);
+    }
+  }
+  int rand = (int)random(inactive.size());
+  level[inactive.get(rand)].type = "plus";
+  level[inactive.get(rand)].active = true;
+  level[inactive.get(rand)].size = blockSize/2;
+  blocks.add(level);
+  for (int r = 0; r < blocks.size(); r++) {
+    for (int i = 0; i < blocks.get(r).length; i++) {
+      blocks.get(r)[i].refreshBorders();
+    }
+  }
+  for (int i = 0; i < blocks.size(); i++) {
+    boolean deadRow = true;
+    for (int b = 0; b < blocks.get(i).length; b++) {
+      if (blocks.get(i)[b].active) {
+        deadRow = false;
+      }
+    }
+    if (!deadRow) {
+      if (blocks.get(i)[0].y > 498) {
+        resetGame();
+      }
+    }
+  }
+}
+
+void resetGame() {
+  state = MENU;
+  level = 1;
+  ballNo = 1;
+  _ballNo = ballNo;
+  blocks = new ArrayList<Block[]>();
+  nextLevel(1);
+  inProgress = false;
+}
+
+void checkBCollisions() {
+  for (int b = 0; b < balls.length; b++) {
+    for (int r = 0; r < blocks.size(); r++) {
+      for (int _b = 0; _b < blocks.get(r).length; _b++) {
+        if (blocks.get(r)[_b].active) {
+          float x = balls[b].x;
+          float y = balls[b].y;
+          float size = balls[b].size;
+          if (blocks.get(r)[_b].type == "block") {
+            float[] bords = blocks.get(r)[_b].borders; //TOP BOT LEFT RIGHT
+            float _size = blocks.get(r)[_b].size;
+            if (y > bords[0]-size/2 && y < bords[1]+size/2 && x > bords[2]-size/2 && x < bords[3]+size/2) {
+              blocks.get(r)[_b].life--;
+              if (y < (bords[0]-size/2)+_size/15 || y > (bords[1]+size/2)-_size/15) {
+                balls[b].ySpeed = -1*balls[b].ySpeed;
+              }
+              if (x < (bords[2]-size/2)+_size/15 || x > (bords[3]+size/2)-_size/15) {
+                balls[b].xSpeed = -1*balls[b].xSpeed;
+              }
+              if (blocks.get(r)[_b].life < 1) {
+                blocks.get(r)[_b].active = false;
+              }
+            }
+          } else if (blocks.get(r)[_b].type == "plus") {
+            float _x = blocks.get(r)[_b].x;
+            float _y = blocks.get(r)[_b].y;
+            float _size = blocks.get(r)[_b].size;
+            if (dist(x, y, _x, _y) < size/2+_size/2) {
+              _ballNo++;
+              blocks.get(r)[_b].active = false;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+void drawMenu() {
+  textSize(50);
+  textAlign(CENTER);
+  background(bg);
+  fill(fg);
+  text("BOUNCEBREAK", width/2, height/10);
+  boolean mouseOver = mouseX > width/2-50 && mouseX < width/2+50 && mouseY > height/2-25 && mouseY < height/2+5;
+  if (mouseOver) {
+    textSize(22);
+    if (!mousePressed && wasMousePressed) {
+      state = GAME;
+    }
+  } else {
+    textSize(20);
+  }
+  text("Play Game", width/2, height/2);
+}
+
+void drawGame() {
+  checkBCollisions();
+  background(bg);
+  fill(fg);
+  noStroke();
+  rect(playSpace.x, playSpace.y, playSpace.xSize, playSpace.ySize);
+  fill(0);
+  textAlign(RIGHT, CENTER);
+  textSize(20);
+  text(level, width-xBuffer/2-10, height-yBuffer/2-20);
+  active = new boolean[ballNo];
+  activeCount = 0;
+  for (int i = 0; i < balls.length; i++) {
+    if (i != 0 && !balls[i].active && dist(balls[i].x, balls[i].y, balls[i-1].x, balls[i-1].y) > ballSize+10) {
+      balls[i].active = true;
+    }
+    fill(balls[i].col);
+    balls[i].refresh();
+    if (balls[i].active) {
+      ellipse(balls[i].x, balls[i].y, balls[i].size, balls[i].size);
+    }
+    if (balls[i].active) {
+      active[i] = true;
+      activeCount++;
+    }
+  }
+  if (activeCount == 0 && inProgress) {
+    inProgress = false;
+    level++;
+    nextLevel(level);
+  }
+  if (mousePressed && !wasMousePressed) {
+    origin.x = mouseX;
+    origin.y = mouseY;
+    wasMousePressed = true;
+  } else if (mousePressed) {
+    fill(255, 80);
+    ellipse(origin.x, origin.y, 25, 25);
+    mouse.x = mouseX;
+    mouse.y = mouseY;
+    float _diffX = origin.x - mouse.x;
+    float _diffY = origin.y - mouse.y;
+    if (_diffY > -20) {
+      diffY = -20;
+    } else {
+      diffY = _diffY;
+    }
+    diffX = _diffX;
+    stroke(0);
+    line(player.x, player.y, player.x+diffX, player.y+diffY);
+  } else if (!mousePressed && wasMousePressed && !inProgress) {
+    float xSpeed = 2.5*(abs(diffX)/diffX)*(sqrt((float)(1-Math.pow(diffY/(sqrt((float)(Math.pow(diffX, 2)+Math.pow(diffY, 2)))), 2))));
+    float ySpeed = -2.5*(sqrt((float)(1-Math.pow(diffX/(sqrt((float)(Math.pow(diffX, 2)+Math.pow(diffY, 2)))), 2))));
+    launch(ballNo, xSpeed, ySpeed);
+  }
+  if (!mousePressed) {
+    wasMousePressed = false;
+  }
+  stroke(0);
+  fill(255);
+  ellipse(player.x, player.y, playerSize, playerSize);
+  textAlign(CENTER, CENTER);
+  textSize(15);
+  fill(0);
+  text(ballNo-activeCount, player.x, player.y-2);
+  if (activeCount == ballNo-1) {
+    for (int i = 0; i < ballNo-1; i++) {
+      if (!active[i]) {
+        player.x = balls[i].x;
+      }
+    }
+  }
+  for (int r = 0; r < blocks.size(); r++) {
+    for (int b = 0; b < rowSize; b++) {
+      if (blocks.get(r)[b].active) {
+        float x = blocks.get(r)[b].x;
+        float y = blocks.get(r)[b].y;
+        float size = blocks.get(r)[b].size;
+        if (blocks.get(r)[b].type == "block") {
+          int l = blocks.get(r)[b].life;
+          fill(bg);
+          rect(x, y, size, size);
+          fill(fg);
+          rect(x, y, size-6, size-6);
+          fill(0);
+          text(l, x, y-2.5);
+        } else if (blocks.get(r)[b].type == "plus") {
+          fill(bg);
+          ellipse(x, y, size, size);
+          fill(fg);
+          ellipse(x, y, size-6, size-6);
+        }
+      }
+    }
+  }
+}
+
+class Ball {
+  float x;
+  float y;
+  float size;
+  float xSpeed;
+  float ySpeed;
+  color col;
+  boolean active;
+  
+  float[] borders;
+  Ball(float _x, float _y, float _xS, float _yS, int _s, color _c, float[] _borders) {
+    inProgress = true;
+    active = false;
+    x = _x;
+    y = _y;
+    xSpeed = _xS;
+    ySpeed = _yS;
+    col = _c;
+    borders = _borders;
+    size = _s;
+  }
+  void refresh() {
+    if (active) {
+      x += xSpeed;
+      y += ySpeed;
+      
+      if (x > borders[3]-size/2 || x < borders[2]+size/2) {
+        xSpeed = -xSpeed;
+      }
+      if (y < borders[0]+size/2) {
+        ySpeed = -ySpeed;
+      }
+      if (y > borders[1]-size/2) {
+        active = false;
+      }
+    }
+  }
+}
+
+class Block {
+  float x;
+  float y;
+  int size;
+  int life;
+  boolean active;
+  String type;
+  float[] borders = new float[4];
+  Block(float _x, float _y, int _size, int _life, String _type) {
+    active = true;
+    x = _x;
+    y = _y;
+    size = _size;
+    life = _life;
+    type = _type;
+    borders[0] = y-size/2; //TOP
+    borders[1] = y+size/2; //BOTTOM
+    borders[2] = x-size/2; //LEFT
+    borders[3] = x+size/2; //RIGHT
+  }
+  
+  void refreshBorders() {
+    borders[0] = y-size/2; //TOP
+    borders[1] = y+size/2; //BOTTOM
+    borders[2] = x-size/2; //LEFT
+    borders[3] = x+size/2; //RIGHT
+  }
+}
+
+class Box {
+  float x;
+  float y;
+  int xSize;
+  int ySize;
+  Box(float _x, float _y, int _xSize, int _ySize) {
+    x = _x;
+    y = _y;
+    xSize = _xSize;
+    ySize = _ySize;
+  }
+}

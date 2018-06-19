@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+.content {
+	font-size:9.5pt;
+	padding:25px;
+	justify-content:center;
+}
+
+.page {
+	font-family:'Comfortaa';
+	color:black;
+	padding:0.2in;
+	min-width:210mm;
+	width:50vw;
+}
+
+.grid {
+	display:grid;
+	grid-template-columns: 2.5fr 1fr;
+	grid-row-gap: 2.5px !important;
+}
+
+.cell {
+	padding:0.1in;
+}
+
+.span {
+	grid-column: 1 / span 2;
+}
+
+h1 {
+	font-size:36pt;
+	font-weight:bolder;
+}
+
+h2 {
+	font-size:9pt;
+	font-weight:bolder;
+	text-transform:uppercase;
+	color:#2079c7;
+	margin:0.25in 0;
+}
+
+h3 {
+	font-size:11pt;
+}
+
+h4 {
+	font-size:10pt;
+	font-weight:bolder;
+	margin-top:.5rem;
+	grid-column: 1 / span 2;
+}
+h5 {
+	padding-top:.2rem !important;
+	font-size:10pt;
+	font-weight:bolder;
+	margin:0;
+	grid-column: 1 / span 2;
+}
+
+p {
+	margin:0;
+}
+
+.section {
+	display:grid;
+	grid-template-columns: 4fr 1fr;
+	margin-bottom:0.25in;
+}
+
+.section > div:nth-child(2) {
+	text-align:right;
+}
+
+.section > div:nth-child(3) {
+	grid-column: 1 / span 2;
+}
+
+.g2 {
+	grid-template-columns: 1fr 1fr;
+}
+.g3 {
+	grid-template-columns: 1fr 1fr;
+}
+.g3 p, .g3 h4, .g3 h5 {
+	margin:0;
+}
+
+.margin {
+	margin-top:0.25in;
+}
+
+.indent b {
+	margin-left:0.2in;
+}
+
+.indent p {
+	margin-left:0.3in;
+}
+
+.right {
+	text-align:right;
+}
+
+.justify {
+	text-align:justify;
+}
+
+#main {
+	padding-right:0.3in;
+}
+
+#contact {
+	padding-top:.25in;
+}

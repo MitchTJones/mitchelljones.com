@@ -1,0 +1,438 @@
+int playerLocFrac = 5;
+int playerSize = 20;
+float speed = 1.5;
+PVector player = new PVector();
+
+int detail = 50;
+int variance = 10;
+PVector[] points = new PVector[detail];
+boolean[] change = new boolean[detail];
+
+PVector mouse = new PVector();
+PVector origin = new PVector();
+
+ArrayList<Bomb> bombs = new ArrayList<Bomb>();
+
+float diffX;
+float diffY;
+boolean wasMousePressed = false;
+
+boolean canOrigin = true;
+
+UIElement[] buttons;
+
+void setup() {
+  size(800,400);
+  init();
+}
+
+void init() {
+  frameRate(240);
+  initializeTerrain();
+  initializePlayer();
+  initUI();
+  ellipseMode(CENTER);
+  rectMode(CENTER);
+  textAlign(CENTER,CENTER);
+  textSize(12);
+  noStroke();
+}
+
+void draw() {
+  background(150);
+  mouse.set(mouseX,mouseY);
+  drawOrigin();
+  drawPlayer();
+  drawBomb();
+  fill(0);
+  //shape(ground(1), 0, 0);
+  drawGround();
+  canOrigin = true;
+  drawUI();
+  if (mousePressed) {
+    wasMousePressed = true;
+  } else {
+    wasMousePressed = false;
+  }
+  for (int i = 0; i < change.length; i++) {
+    change[i] = false;
+  }
+}
+
+void drawPlayer() {
+  checkKeys();
+  refreshPlayer(player.x);
+  fill(255);
+  stroke(0);
+  ellipse(player.x,player.y,playerSize,playerSize);
+}
+
+void initUI() {
+  buttons = new UIElement[3];
+  buttons[0] = new OnePress(37*width/40, height/20, 75, 15, "Reset");
+  buttons[1] = new Switch(37*width/40, 2*height/20, 75, 15, "Advanced");
+  buttons[2] = new Switch(37*width/40, 3*height/20, 75, 15, "Coordinates");
+}
+
+void drawUI() {
+  canOrigin = true;
+  for (int i = 0; i < buttons.length; i++) {
+    if (buttons[i].mouseOver()) {
+      canOrigin = false;
+    }
+  }
+  for (int i = 0; i < 2; i++) {
+    buttons[i].refresh();
+    if (buttons[i].pressed()) {
+      if (buttons[i].message == "Reset") {
+        initializeTerrain();
+      }
+    }
+  }
+  if (buttons[1].on) {
+    for (int i = 2; i < buttons.length; i++) {
+      buttons[i].refresh();
+    }
+    for (int i = 0; i < points.length; i++) {
+      if (change[i]) {
+        fill(255,0,0);
+      } else {
+        fill(255);
+      }
+      stroke(0);
+      ellipse(points[i].x, points[i].y, 5, 5);
+      if (buttons[2].on) {
+        textSize(8);
+        if (i%2 == 0) {
+          text("("+round(points[i].x)+",", points[i].x, points[i].y-15);
+          text(round(points[i].y)+")", points[i].x, points[i].y-7);
+        } else {
+          text("("+round(points[i].x)+",", points[i].x, points[i].y+7);
+          text(round(points[i].y)+")", points[i].x, points[i].y+15);
+        }
+      }
+    }
+  }
+}
+
+void drawOrigin() {
+  noStroke();
+  if (canOrigin) {
+  if (mousePressed && !wasMousePressed) {
+    origin.x = mouse.x;
+    origin.y = mouse.y;
+  } else if (mousePressed) {
+    fill(255, 80);
+    ellipse(origin.x, origin.y, 25, 25);
+    float _diffX = origin.x - mouse.x;
+    float _diffY = origin.y - mouse.y;
+    if (_diffY > -10) {
+      diffY = -10;
+    } else {
+      diffY = _diffY;
+    }
+    diffX = _diffX;
+    stroke(0);
+    line(player.x, player.y, player.x+diffX, player.y+diffY);
+    noStroke();
+  } else if (!mousePressed && wasMousePressed) {
+    float xSpeed = diffX/100;
+    float ySpeed = diffY/100;
+    launch(xSpeed, ySpeed);
+  }
+  }
+}
+
+void drawBomb() {
+  for (int i = 0; i < bombs.size(); i++) {
+    if (bombs.get(i).active) {
+      bombs.get(i).refresh();
+      float x = bombs.get(i).loc.x;
+      float y = bombs.get(i).loc.y;
+      float size = bombs.get(i).size;
+      fill(255);
+      stroke(0);
+      ellipse(x, y, size, size);
+      //Collision Detection:
+      int lBound = 0;
+      int rBound = 0;
+      for (int b = 0; b < points.length; b++) {
+        if (points[b].x < x) {
+          lBound = b;
+        }
+      }
+      for (int b = points.length-1; b >= 0; b--) {
+        if (points[b].x > x) {
+          rBound = b;
+        }
+      }
+      float rY = points[rBound].y;
+      float lY = points[lBound].y;
+      float rX = points[rBound].x;
+      float lX = points[lBound].x;
+      float collY = (x*((rY-lY)/(rX-lX))+(lY-lX*((rY-lY)/(rX-lX))))-((sin(PI/2)*(size/2))/(sin(atan(abs((rX-lX)/(rY-lY))))));
+      if  (collY < y) {
+        for (int r = 0; r < bombs.get(i).range; r++) {
+          try {
+            change[lBound-r] = true;
+            change[rBound+r] = true;
+            if (points[lBound-r].y > height-bombs.get(i).power) {
+              points[lBound-r].y = height-5;
+            }
+            if (points[rBound+r].y > height-bombs.get(i).power) {
+              points[rBound+r].y = height-5;
+            } else {
+              points[lBound-r].y += bombs.get(i).power/(i+3);
+              points[rBound+r].y += bombs.get(i).power/(i+3);
+            }
+          } catch (ArrayIndexOutOfBoundsException e) {
+          }
+        }
+        bombs.remove(i);
+      }
+    }
+  }
+}
+
+void launch(float xS, float yS) {
+  bombs.add(new Bomb(player.x, player.y, 3*playerSize/4, 0, 0, 1.2, 5, 50));
+  bombs.get(bombs.size()-1).loc.set(player.x, player.y);
+  bombs.get(bombs.size()-1).speed.set(xS,yS);
+  bombs.get(bombs.size()-1).active = true;
+}
+
+void checkKeys() {
+  if (keyPressed) {
+    if (keyCode == 37 && player.x-playerSize/2 > 0) {
+      player.x -= speed;
+    }
+    if (keyCode == 39 && player.x+playerSize/2 < width) {
+      player.x += speed;
+    }
+  }
+}
+
+void initializeTerrain() {
+  for (int i = 0; i < points.length; i++) {
+    points[i] = new PVector();
+    if (i == 0) {
+      points[i].y = (int)random(height/4, 3*height/4);
+    } else {
+      points[i].y = (int)random(points[i-1].y-variance, points[i-1].y+variance);
+    }
+    points[i].x = i*width/(points.length-1);
+  }
+}
+
+void initializePlayer() {
+  refreshPlayer(width/playerLocFrac);
+}
+
+void refreshPlayer(float x) {
+  float y;
+  int lBound = 0;
+  int rBound = 0;
+  int mBound;
+  for (int i = 0; i < points.length; i++) {
+    if (points[i].x < x) {
+      lBound = i;
+    }
+  }
+  for (int i = points.length-1; i >= 0; i--) {
+    if (points[i].x > x) {
+      rBound = i;
+    }
+  }
+  float rY = points[rBound].y;
+  float lY = points[lBound].y;
+  float rX = points[rBound].x;
+  float lX = points[lBound].x;
+  y = (x*((rY-lY)/(rX-lX))+(lY-lX*((rY-lY)/(rX-lX))))-((sin(PI/2)*(playerSize/2))/(sin(atan(abs((rX-lX)/(rY-lY))))));
+  if (rBound - lBound > 1) {
+    mBound = rBound-1;
+    y = points[mBound].y-playerSize/2;
+  }
+  player.set(x,y);
+}
+
+void drawGround() {
+  for (int i = 1; i < points.length; i++) {
+    if (points[i].y > height) {
+      points[i].y = height-5;
+    }
+    line(points[i-1].x, points[i-1].y, points[i].x, points[i].y);
+  }
+}
+
+PShape ground(float scale) {
+  PShape s = createShape();
+  s.beginShape();
+  for (int i = 0; i < points.length; i++) {
+    if (points[i].y > height) {
+      points[i].y = height-5;
+    }
+    s.vertex(points[i].x, points[i].y);
+  }
+  s.vertex(width,height);    //Bot Right
+  s.vertex(0,height);        //Bot Left
+  s.endShape(CLOSE);
+  s.scale(scale);
+  return s;
+}
+
+void vLine(PVector v1, PVector v2) {
+  line(v1.x, v1.y, v2.x, v2.y);
+}
+
+class Bomb {
+  PVector loc = new PVector();
+  PVector speed = new PVector();
+  float size;
+  boolean active;
+  int range;
+  int power;
+  float gravity;
+  Bomb(float _x, float _y, float _size, float _xS, float _yS, float _grav, int _r, int _p) {
+    loc.set(_x,_y);
+    speed.set(_xS,_yS);
+    size = _size;
+    gravity = _grav/100;
+    range = _r;
+    power = _p;
+  }
+  void refresh() {
+    if (active) {
+      loc.x += speed.x;
+      loc.y += speed.y;
+      speed.y += gravity;
+    }
+    if (loc.x > width-size/2 || loc.x < size/2) {
+      speed.x = -speed.x;
+    }
+    if (loc.y < size/2) {
+      speed.y = -speed.y;
+    }
+  }
+}
+
+class UIElement {
+  PVector loc = new PVector();
+  PVector size = new PVector();
+  String message;
+  boolean active;
+  boolean on;
+  UIElement(float x, float y, float xS, float yS, String _message) {
+    loc.set(x,y);
+    size.set(xS,yS);
+    message = _message;
+    active = true;
+  }
+  void refresh() {
+  }
+  boolean mouseOver() {
+    return mouseX > loc.x-size.x/2 && mouseX < loc.x+size.x/2 && mouseY > loc.y-size.y/2 && mouseY < loc.y+size.y/2;
+  }
+  boolean pressed() {
+    return mouseOver() && mousePressed && !wasMousePressed;
+  }
+}
+
+class Adjuster extends UIElement {
+  float num;
+  int counter;
+  Adjuster(float x, float y, float xS, float yS, String _message, float _num) {
+    super(x,y,xS,yS,_message);
+    num = _num;
+  }
+  boolean lMouseOver() {
+    return mouseX > (loc.x-size.y*2)-size.y/2 && mouseX < (loc.x-size.y*2)+size.y/2 && mouseY > loc.y-size.y/2 && mouseY < loc.y+size.y/2;
+  }
+  boolean rMouseOver() {
+    return mouseX > (loc.x+size.y*2)-size.y/2 && mouseX < (loc.x+size.y*2)+size.y/2 && mouseY > loc.y-size.y/2 && mouseY < loc.y+size.y/2;
+  }
+  boolean lPressed() {
+    return lMouseOver() && mousePressed && !wasMousePressed;
+  }
+  boolean rPressed() {
+    return rMouseOver() && mousePressed && !wasMousePressed;
+  }
+  void refresh() {
+    color lStr = 255;
+    color rStr = 255;
+    if (lMouseOver()) {
+      lStr = 0;
+    } else {
+      lStr = 255;
+    }
+    if (rMouseOver()) {
+      rStr = 0;
+    } else {
+      rStr = 255;
+    }
+    display(255, lStr, rStr, true);
+  }
+  void display(color f, color str1, color str2, boolean showNum) {
+    String dmessage;
+    fill(f);
+    stroke(255);
+    rect(loc.x, loc.y, size.x-size.y*2-6, size.y);
+    stroke(str2);
+    rect(loc.x+size.y*2, loc.y, size.y, size.y);
+    stroke(str1);
+    rect(loc.x-size.y*2, loc.y, size.y, size.y);
+    fill(0);
+    text("+", loc.x+size.y*2, loc.y-2.5);
+    text("-", loc.x-size.y*2, loc.y-2.5);
+    stroke(str2);
+    fill(0);
+    if (showNum) {
+      dmessage = str(num);
+    } else {
+      dmessage = message;
+    }
+    text(dmessage, loc.x, loc.y-2.5);
+  }
+}
+
+class Button extends UIElement {
+  Button(float x, float y, float xS, float yS, String _message) {
+    super(x,y,xS,yS,_message);
+  }
+  void refresh() {
+    color str;
+    if (mouseOver() || on) {
+      str = 0;
+    } else {
+      str = 255;
+    }
+    display(255, str);
+  }
+  void display(color f, color s) {
+    fill(f);
+    stroke(s);
+    rect(loc.x, loc.y, size.x, size.y);
+    fill(0);
+    textSize(12);
+    text(message, loc.x, loc.y-1.5);
+  }
+}
+
+class OnePress extends Button {
+  OnePress(float x, float y, float xS, float yS, String _message) {
+    super(x,y,xS,yS,_message);
+  }
+}
+
+class Switch extends Button {
+  Switch(float x, float y, float xS, float yS, String _message) {
+    super(x,y,xS,yS,_message);
+  }
+  void refresh() {
+    if (pressed()) {
+      println("SWITCH");
+      on = !on;
+      println(on);
+    }
+    super.refresh();
+  }
+}

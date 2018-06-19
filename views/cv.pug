@@ -1,0 +1,154 @@
+extends layout.pug
+
+block head
+	- var statement = 'I’m a student, coder, and maker with a passion for project-based learning and teaching. I’m most interested in bridging the boundaries between computer science and other disciplines, and making technology more accessible for everyone.';
+	title Mitchell Jones' CV
+	link(rel='stylesheet', href='/cv/cv.css')
+	meta(name='description', content=statement)
+block content
+	.page
+		.inner
+			.grid
+				.cell#title
+					h1 Mitchell Jones
+					p.justify #{statement}
+				.cell.right#contact
+					p
+						a(href='https://www.mitchelljones.com') www.mitchelljones.com
+					p
+						a(href='mailto:mitch@mitchelljones.com') mitch@mitchelljones.com
+					p
+						a(href='https://www.linkedin.com/in/mitchelltjones') LinkedIn
+					p
+						a(href='https://www.github.com/MitchTJones') GitHub
+					p
+						b (702) 521-8842
+				.cell#main
+					h2 Experience
+					//- .section
+					//- 	div
+					//- 		h3 #[b Bevrly], New York City, United States
+					//- 		h3 #[i Software Engineering Intern]
+					//- 	div
+					//- 		p SUMMER 2018
+					//- 	div
+					//- 		p Bevrly is a two-man startup venture using data analytics to innovate in the wine industry. Working directly under Founder #[a(href='https://www.linkedin.com/in/barselah/') Yaacov Barselah] and CTO #[a(href='https://www.linkedin.com/in/owen-miller-12112273/') Owen Miller], I'm completely reworking Bevrly's front-end interface and optimizing existing code.
+					.section
+						div
+							h3 #[b Institute of Neuroinformatics], Zürich, Switzerland
+							h3 #[i Research Assistant]
+						div
+							p MARCH 2018
+						div
+							p I worked with PhD students at ETH Zürich and the University of Zürich’s Institute of Neuroinformatics on various small projects in neuromorphic computing and machine vision. Programming in Python, JavaScript, and some C++.
+					.section
+						div
+							h3 #[b Sydney Institute for Astronomy], Sydney, Australia
+							h3 #[i Research Assistant]
+						div
+							p MARCH 2017
+						div
+							p I worked with PhD students at Sydney University’s Institute for Astronomy on creating an application that analyzes and compares different processing pipelines for Kepler K2 data. Programming in Python.
+					h2 Education
+					.section
+						div
+							h3 #[b Choate Rosemary Hall], Wallingford, CT, USA
+						div
+							p 2014 - 2018
+						div
+							h4 By the Numbers
+							.grid.g2
+								p - #[b GPA:] 3.7 / 4.1
+								p - #[b ACT:] 34
+							h4 AP (or higher) level classes
+							.grid.g2
+								p - #[b AP Computer Science:] A
+								p - #[b AP Calculus:] A
+								p - #[b AP U.S. History:] A-
+								p - #[b Honors Interactive Media, DS:] A
+								p - #[b Honors French 651:] A-
+							h4 Extracurricular
+							.indent
+								b - Choate Debate Team - Meeting Leader
+								p I lead weekly debate meetings, training novice debaters, and competing in advanced tournaments on weekends.
+							.indent
+								b - Rothberg Catalyzer - Finalist
+								p My team and I were chosen to advance to the Rothberg Catalyzer final at Brown to compete against teams from Brown, Carnegie Mellon, Yale, and U Penn.
+							.indent
+								b - Choate Programming Union - Member
+					h2 Selected Projects
+					h3 #[b mitchelljones.com] — #[i Gallery]
+					p My personal website, which houses a gallery of some of my favorite major and minor projects. #[a(href='https://www.mitchelljones.com') www.mitchelljones.com].
+					.margin
+						h3 #[b Rothberg Catalyzer] — #[i Hackathon]
+						p With a project centered around the health, safety, and comfort of children during disaster relief, my 4-person team won the Choate Rothberg Catalyzer and advanced to compete against teams from Yale, Brown, Carnegie Mellon, and the University of Pennsylvania. Our project, taking the form of a children’s toy, incorporates biomedical data sensors to assess and aid children and adolescents affected by major disasters.
+					.margin
+						h3 #[b Battle Blocks] — #[i Application]
+						p The product of a term-long Directed Study in interactive media and game design, Battle Blocks is a video game that combines the eye-catching art style and exciting gameplay of a traditional platformer-shooter with turn-based strategy unique to the genre. I built the game from scratch in the Unity engine, designing the user experience and game mechanics, coding both the client and server systems, and drawing and animating all of the visuals.
+					.margin
+						h3 #[b Locke Pocket] — #[i Web App]
+						p The official web wallet for the cryptocurrency #[a(href='https://www.thelockeproject.com') Locke]. Locke Pocket is a secure, easy-to-use Ethereum token wallet. Alongside Locke Pocket, I built a barebones, open-source #[a(href='https://github.com/MitchTJones/ERC-20-Token-Wallet') ERC-20 web wallet template] for anyone who'd like to make their own secure custom Ethereum token web wallet. #[a(href='https://www.lockepocket.com') www.lockepocket.com].
+				.cell#side
+					h2 Skills
+					.grid.g3
+						h4 #[u Programming]
+						h5 Languages
+						p - JavaScript
+						p.right Advanced
+						p - Java
+						p.right Advanced
+						p - HTML/CSS
+						p.right Advanced
+						p - Python
+						p.right Intermediate
+						p - C#
+						p.right Intermediate
+						p - PHP
+						p.right Novice
+						p - Solidity
+						p.right Novice
+						p - C++
+						p.right Novice
+						h5 Frameworks
+						p - Node.js
+						p.right Advanced
+						p - Unity
+						p.right Intermediate
+						br
+						h4 #[u Software]
+						p - Photoshop
+						p.right Advanced
+						p - MS Office
+						p.right Advanced
+						p - Google Drive
+						p.right Advanced
+						p - Premiere Pro
+						p.right Intermediate
+						p - Illustrator
+						p.right Novice
+						p - After Effects
+						p.right Novice
+						p - Blender
+						p.right Novice
+					h2 Awards
+					p #[b Rochester Dean's Scholarship] for academic achievement and the potential to make unique contributions to student life.
+					p 2018-2022
+					br
+					p #[b Enhanced Research and Innovation Grant] awarded to Rochester students for motivation, creativity, and strong potential for success.
+					p 2018
+					br
+					p #[b Paul Mellon Scholarship] for academic excellence and drive in the study of math, computer science, and/or science.
+					p 2014-2018
+					br
+					p #[b Choate Rosemary Hall Award for Excellence in Advanced Study of Computer Science]; the highest honor in Computer Science.
+					p 2018
+					br
+					p #[b Deans' List for Choate Students Who Excel in All Subjects]
+					p 2016-2018
+					h2 Languages
+					.grid.g3
+						p English
+						p.right Native
+						p French
+						p.right Fluent
+	script(src='/cv/cvmobile.js')

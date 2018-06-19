@@ -1,0 +1,86 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		include ./includes/gtag.pug
+		// normalize
+		link(rel='stylesheet', href='/css/normalize.css')
+		include ./includes/favicos.pug
+		// JQuery
+		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+		// Bootstrap CSS
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ', crossorigin='anonymous')
+		title Mitchell Jones
+		meta(name='description', content='Mitchell Jones is a programmer, writer, and student dedicated to expanding the scope of computer science to encompass all aspects of human civilization and society')
+		// my stuff
+		link(rel='stylesheet', href='/css/main.css')
+		link(rel='stylesheet', href='/css/hexagons.css')
+		link(rel='stylesheet', href='/home/main.css')
+		script(src='/js/functions.js')
+	body
+		section#top.bg-grad
+			canvas#demo.cbg
+			#blurb.noselect.shadow.front
+				h1 Mitchell Jones
+				nav.navbar.navbar-inverse
+					ul.navbar-nav.flex-grow
+						li.nav-item
+							a#l-projects.nav-link.jlink.t-white Projects
+						li.nav-item
+							a#l-about.nav-link.jlink.t-white About
+						li.nav-item
+							a#l-cv.nav-link.t-white(href='/cv') CV
+						li.nav-item
+							a#l-contact.nav-link.t-white.jlink Contact
+						//- li.dropdown
+						//- 	a.nav-link.dropdown-toggle.t-white(data-toggle='dropdown', href='#') More
+						//- 	ul.dropdown-menu
+						//- 		li
+						//- 			a.dropdown-item.t-black.ns(href='/favsites') Favorite Websites
+						//- 		li
+						//- 			a.dropdown-item.t-black.ns(href='/rolemodels') Role Models
+			#abt-demo.topleft.noselect
+				p
+					| Demo: 
+					b Light Fabric
+					|  - 
+					a.t-white(href='/projects/js/light') Learn More.
+	section#projects
+		ul#hexGrid
+			each val, index in prData
+				li.hex
+					.hexIn
+						if (val.link == '')
+							a.hexLink.noselect
+								img(src='/img/project-snapshots/thumbnail-' + index + '.png')
+								h1.bg-2.t-1 #{val.title}
+								h2 Coming Soon
+								p.bg-2.t-1 #{val.desc}
+						else
+							a.hexLink.noselect(href=val.link)
+								img(src='/img/project-snapshots/thumbnail-' + index + '.png')
+								h1.bg-2.t-1 #{val.title}
+								p.bg-2.t-1 #{val.desc}
+	section#about.bg-2.front
+		img(src='/img/notability.png')
+		.abt.container.text-justify
+			p.t-1 My name is Mitchell Jones. I was born in Brisbane, Australia, and, after passing through every continent but Antarctica along the way, I now live in Las Vegas, Nevada. I just graduated from #[a.a-1(href='https://www.choate.edu/') Choate Rosemary Hall] in Wallingford, Connecticut, and will be attending the #[a.a-1(href='https://www.rochester.edu/') University of Rochester] this coming fall.
+			p.t-1 My greatest passion - and the subject of this website - is computer science, but my interests range from philosophy to frisbee. I'm most fascinated by the intersections that computer science shares with other disciplines, and how it can be applied to any and all aspects of human society and life. I believe that we are only beginning to realize how computer technology can reshape our entire civilization, and I want to dedicate my life to this pursuit. Right now, my greatest interests lie in Artificial Intelligence and Blockchain technology.
+			p.t-1 I've made a video game, worked with doctorate-level research groups at #[a.a-1(href='http://sydney.edu.au/science/physics/sifa/') Sydney University's Institute for Astronomy] and #[a.a-1(href='https://www.ini.uzh.ch/') ETH Zürich's Institute of Neuroinformatics], and I spend most of my free time trying to teach myself new things, usually through projects like this website.
+			p.t-1 This is an attempt at organizing my thoughts and work into one place where anyone can stop by, learn something, and have some fun.
+
+	section#etc.wrapper
+		#contact.jumbotron.front
+			.c-item.profilepic
+				img(src='/img/profile2.png')
+			.c-item.contactinfo
+				h2 Contact Me
+				p #[a(href='mailto:mitch@mitchelljones.com') mitch@mitchelljones.com]
+				p #[a(href='mailto:mjones18@choate.edu') mjones18@choate.edu]
+				p #[a(href='https://www.linkedin.com/in/mitchelltjones') LinkedIn]
+				p #[a(href='https://github.com/MitchTJones') GitHub]
+		canvas(id='bg' class='cbg')
+	include ./includes/footer.pug
+	script(src='/home/shapes.js')
+	script(src='/home/demo.js')

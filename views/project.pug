@@ -1,0 +1,15 @@
+extends layout.pug
+
+block head
+	title #{prData.title}
+	link(rel='stylesheet', href='/projects/main.css')
+	meta(name='description', content='')
+block content
+	#sidebar.bg-1
+		ul.sidebar-nav
+			li
+				h2 #{prData.title}
+			for i in prData.pages
+				li
+					a(href=i.link) #{i.name}
+	.markdown-body!=content
