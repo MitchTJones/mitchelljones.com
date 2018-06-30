@@ -96,7 +96,7 @@
 		"template":"project",
 		"title":"Cellular Automata",
 		"desc":"A demonstration of emergence in computing.",
-		"link":"/projects/gol/intro",
+		"link":"https://mitchtjones.github.io/JS-Game-of-Life/",
 		"pages": [
 			{
 				"link":"intro",
