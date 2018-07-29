@@ -7,7 +7,7 @@ module.exports = {
     production: {
       user: 'ubuntu',
       host: '54.183.150.19',
-      key: 'C:/keys/key1.pem',
+      key: 'C:/keys/mtj.pem',
       ref: 'origin/master',
       repo: 'https://github.com/MitchTJones/mitchelljones.com',
       path: '/home/ubuntu/mitchelljones.com',
