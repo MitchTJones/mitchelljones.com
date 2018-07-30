@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: '54.183.150.19',
+      host: 'ec2-54-183-150-19.us-west-1.compute.amazonaws.com',
       key: 'C:/keys/mtj.pem',
       ref: 'origin/master',
       repo: 'https://github.com/MitchTJones/mitchelljones.com',
