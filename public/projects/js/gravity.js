@@ -42,13 +42,17 @@ var cvs, ctx;
 
 //Initial Setup Function
 function setup() {
-	scaleCanvas(cvs,getWinSize());
-	ctx.translate(cvs.width/2, cvs.height/2);
-	initialize();
+	onResize();
 	window.requestAnimationFrame(draw);
 }
 
-bare('canvas', setup);
+function onResize() {
+	scaleCanvas(cvs,getWinSize());
+	ctx.translate(cvs.width/2, cvs.height/2);
+	initialize();
+}
+
+bare('canvas', setup, onResize);
 
 function draw() {
 	ctx.save();
@@ -115,20 +119,10 @@ function grav(planet1, planet2) {
 	return speed;
 }
 
-function reset() {
-	scaleCanvas(getWinSize());
-	setup();
-}
-
 //Track mouse location
 window.addEventListener('mousemove', function(e) {
 	var rect = canvas.getBoundingClientRect();
 	mouseLoc.set(e.clientX-rect.left, e.clientY-rect.top);
-});
-
-//Resize canvas with window
-window.addEventListener("resize", function(e) {
-	reset();
 });
 
 window.addEventListener('keypress', function(e) {

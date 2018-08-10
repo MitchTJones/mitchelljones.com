@@ -79,11 +79,13 @@ var Vector = (function () {
 	return Vector;
 }());
 
-function bare(id, setup) {
+function bare(id, setup, onResize) {
+	if (typeof onResize == 'undefined')
+		onResize = setup;
 	getCanvas(id);
 	setup();
 	window.onresize = function() {
-		bare(id,setup);
+		onResize();
 	}
 }
 
