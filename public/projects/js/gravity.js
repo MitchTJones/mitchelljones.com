@@ -126,14 +126,14 @@ window.addEventListener('mousemove', function(e) {
 });
 
 window.addEventListener('keypress', function(e) {
-	var keyC = e.keyCode;
+	var keyC = e.which;
 	if (keyC == 45) {	//-
 		ctx.scale(sFactors[0], sFactors[0]);
 	}
 	if (keyC == 61) {	//+
 		ctx.scale(sFactors[1], sFactors[1]);
 	}
-	if (keyC == 32) {	//Space
-		ctx.translate(planets[0].loc.x, planets[0].loc.y);
-	}
+	// if (keyC == 32) {	//Space
+	// 	ctx.translate(planets[0].loc.x, planets[0].loc.y);
+	// }
 });
