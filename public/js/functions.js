@@ -296,6 +296,7 @@ function getWinSize() {
 
 function getCanvasSize() {
 	var canSize = new Vector(canvas.width, canvas.height);
+	return canSize;
 }
 
 function degree(n1, n2, l) {
