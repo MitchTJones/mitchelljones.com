@@ -22,37 +22,37 @@ input, input {
 	display:none;		/* Hides the actual tickbox */
 }
 input[id=tooltoggle] + label {
-	background: url('/img/icons/icon_tools.png');
+	background: url('icons/icon_tools.png');
 }
 input[id=abouttoggle] + label {
-	background: url('/img/icons/icon_about.png');
+	background: url('icons/icon_about.png');
 }
 input[id=creditstoggle] + label {
-	background: url('/img/icons/icon_credits.png');
+	background: url('icons/icon_credits.png');
 }
 input[id=tool_push] + label {
-	background: url('/img/icons/icon_tools_push.png');
+	background: url('icons/icon_tools_push.png');
 }
 input[id=tool_pull] + label {
-	background: url('/img/icons/icon_tools_pull.png');
+	background: url('icons/icon_tools_pull.png');
 }
 input[id=tool_twist] + label {
-	background: url('/img/icons/icon_tools_twist.png');
+	background: url('icons/icon_tools_twist.png');
 }
 input[id=tool_freeze] + label {
-	background: url('/img/icons/icon_tools_freeze.png');
+	background: url('icons/icon_tools_freeze.png');
 }
 input[id=tool_reset] + label {
-	background: url('/img/icons/icon_tools_reset.png');
+	background: url('icons/icon_tools_reset.png');
 }
 input[id=tool_infinity] + label {
-	background: url('/img/icons/icon_tools_infinity.png');
+	background: url('icons/icon_tools_infinity.png');
 }
 input[id=switch] + label {
-	background: url('/img/icons/icon_switch.png');
+	background: url('icons/icon_switch.png');
 }
 input[id=home] + label {
-	background: url('/img/icons/icon_home.png');
+	background: url('icons/icon_home.png');
 }
 
 
