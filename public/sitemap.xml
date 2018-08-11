@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='0.5' encoding='utf-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'>
 	<url>
 		<loc>https://mitchelljones.com/</loc>
@@ -10,39 +10,39 @@
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/intro</loc>
-		<priority>1.0</priority>
+		<priority>0.6</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/summary</loc>
-		<priority>1.0</priority>
+		<priority>0.6</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/reflection</loc>
-		<priority>1.0</priority>
+		<priority>0.6</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/devblog1</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/devblog2</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/devblog3</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/devblog4</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/dsgame/downloads</loc>
-		<priority>1.0</priority>
+		<priority>0.7</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/zurich/intro</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/sydney/intro</loc>
@@ -50,15 +50,15 @@
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/sydney/EPIC_211342524</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://mitchelljones.com/projects/sydney/EPIC_211509553</loc>
-		<priority>1.0</priority>
+		<loc>https://mitchelljones.com/projects/sydney/EPIC_210.59553</loc>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/sydney/EPIC_212521166</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/light</loc>
@@ -66,7 +66,7 @@
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/light.html</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/vectors</loc>
@@ -74,31 +74,31 @@
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/vectors.html</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/gravity</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/gravity.html</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/lowpoly</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/lowpoly.html</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/trig</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/js/trig.html</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/processing/snakelite</loc>
@@ -106,18 +106,18 @@
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/processing/bouncebreak</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/processing/nomanstank</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/processing/procedural</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://mitchelljones.com/projects/processing/blobwar</loc>
-		<priority>1.0</priority>
+		<priority>0.5</priority>
 	</url>
 </urlset>
