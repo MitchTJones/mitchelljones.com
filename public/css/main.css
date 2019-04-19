@@ -99,6 +99,29 @@
 
 .main-nav {
 	border-radius:0 !important;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+	-webkit-align-items: center;
+	  -webkit-box-align: center;
+	     -ms-flex-align: center;
+	        align-items: center;
+}
+.main-nav .navbar-nav {
+	    -webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+}
+.navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
 }
 
 .flex-grow {
