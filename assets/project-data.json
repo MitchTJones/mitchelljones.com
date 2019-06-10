@@ -42,8 +42,11 @@
 				"link":"intro",
 				"name":"Introduction"
 			},{
+				"link":"https://mitchtjones.github.io/JS-Game-of-Life/",
+				"name":"Cellular Automata"
+			},{
 				"link":"",
-				"name":"Demos coming soon!"
+				"name":"more demos to be uploaded!"
 			}
 		]
 	},
