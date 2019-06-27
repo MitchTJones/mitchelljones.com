@@ -13,7 +13,7 @@ function compileStylus() {
 }
 
 function minifyJS() {
-    return gulp.src('public/**/*.js', {base: './'})
+    return gulp.src(['public/**/*.js', '!public/projects/dsgame/code/nodeservercode.js'], {base: './'})
         .pipe(terser())
         .pipe(rename((path) => {
             path.basename = path.basename + '-min';
