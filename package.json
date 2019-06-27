@@ -26,6 +26,8 @@
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-rename": "^1.4.0",
     "gulp-stylus": "^2.7.0",
     "gulp-terser": "^1.2.0",
     "pm2": "^2.10.4"
