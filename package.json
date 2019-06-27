@@ -18,12 +18,16 @@
     "http-errors": "^1.6.3",
     "morgan": "^1.9.1",
     "nib": "^1.1.2",
-    "npm": "^5.10.0",
+    "npm": "^6.9.1",
     "pug": "2.0.0-beta11",
     "showdown": "^1.9.0",
     "stylus": "^0.54.5"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-stylus": "^2.7.0",
+    "gulp-terser": "^1.2.0",
     "pm2": "^2.10.4"
   }
 }

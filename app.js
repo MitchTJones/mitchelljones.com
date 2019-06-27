@@ -3,7 +3,7 @@ const	createError = require('http-errors'),
 		path = require('path'),
 		cookieParser = require('cookie-parser'),
 		logger = require('morgan'),
-		stylus = require('stylus'),
+		// stylus = require('stylus'),
 		nib = require('nib'),
 		fs = require('fs');
 
@@ -26,12 +26,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(stylus.middleware({
-	src: __dirname + '/public',
-	compile: function(str, path) {
-		return stylus(str).set('filename', path).use(nib());
-	}
-}));
+// app.use(stylus.middleware({
+// 	src: __dirname + '/public',
+// 	compile: function(str, path) {
+// 		return stylus(str).set('filename', path).use(nib());
+// 	}
+// }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
