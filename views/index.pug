@@ -26,13 +26,13 @@ html
 				nav.navbar.navbar-inverse
 					ul.navbar-nav.flex-grow
 						li.nav-item
-							a#l-projects.nav-link.jlink.t-white Projects
+							a.nav-link.jlink.t-white(to='projects') Projects
 						li.nav-item
-							a#l-about.nav-link.jlink.t-white About
+							a.nav-link.jlink.t-white(to='about') About
 						li.nav-item
-							a#l-cv.nav-link.t-white(href='/cv') CV
+							a.nav-link.t-white(href='/cv' to='cv') CV
 						li.nav-item
-							a#l-contact.nav-link.t-white.jlink Contact
+							a.nav-link.t-white.jlink(to='contact') Contact
 			#abt-demo.topleft.noselect
 				p Demo: #[b Light Fabric]; #[a.t-white(href='/projects/js/light') Learn More].
 	section#projects
@@ -54,10 +54,17 @@ html
 	section#about.bg-2.front
 		img(src='/img/notability.png')
 		.abt.container.text-justify
-			p.t-1 My name is Mitchell Jones. I was born in Brisbane, Australia, and, after passing through every continent but Antarctica along the way, I now live in Las Vegas, Nevada. I graduated from #[a.a-1(href='https://www.choate.edu/') Choate Rosemary Hall] last year and am currently a freshman Computer Science student at the #[a.a-1(href='https://www.rochester.edu/') University of Rochester].
-			p.t-1 My greatest passion - and the subject of this website - is computer science, but my interests range from philosophy to frisbee. I'm most fascinated by the intersections that computer science shares with other disciplines, and how it can be applied to any and all aspects of human society and life. I believe that we are only beginning to realize how computer technology can reshape our entire civilization, and want to dedicate my life to this pursuit. Right now, my greatest interests lie in Artificial Intelligence, Blockchain, and Machine Vision.
-			p.t-1 I've worked with doctorate-level research groups at #[a.a-1(href='http://sydney.edu.au/science/physics/sifa/') Sydney University's Institute for Astronomy] and #[a.a-1(href='https://www.ini.uzh.ch/') ETH Zürich's Institute of Neuroinformatics], and I spend most of my free time trying to teach myself new things, usually through projects like this website.
-			p.t-1 This is an attempt at organizing my thoughts and work into one place where anyone can stop by, learn something, and have some fun.
+			p.t-1 Hi! I'm Mitch. I was born in Brisbane, Australia, and, after spending some time in France, I ended up living in Las Vegas, Nevada. I graduated from  #[a.a-1(href='https://www.choate.edu/') Choate Rosemary Hall] last year and am going into my sophomore year of computer science at the #[a.a-1(href='https://www.rochester.edu/') University of Rochester].
+			p.t-1 While the subject of this website - computer science - is my main interest, my passions range from philosophy to frisbee. What I've decided to dedicate myself to studying, though, are the intersections that computer science shares with other disciplines like political science and the humanities; how computers can be best used to advance human civilization and knowledge. For the time being, my intrigue lies in AI, blockchain, and machine vision.
+			p.t-1 I've worked with PhD-level research groups at #[a.a-1(href='http://sydney.edu.au/science/physics/sifa/') Sydney University's Institute for Astronomy] and #[a.a-1(href='https://www.ini.uzh.ch/') ETH Zürich's Institute of Neuroinformatics], but I spend most of my time trying to teach myself new things through projects like this website.
+			p.t-1 Welcome to (the beginning of) my story as a student, coder, and citizen, where anybody can stop by, learn something, and have some fun.
+			div.row.mt-5
+				div.col-sm-4.d-flex.justify-content-center
+					button.jlink(to='projects' type='button' class='btn btn-light btn-lg') Projects
+				div.col-sm-4.d-flex.justify-content-center
+					button(onclick='window.location.href="https://www.mitchelljones.com/cv/"' type='button' class='btn btn-light btn-lg') Curriculum Vitae
+				div.col-sm-4.d-flex.justify-content-center
+					button.jlink(to='contact' type='button' class='btn btn-light btn-lg') Get in Touch
 
 	section#etc.wrapper
 		#contact.jumbotron.front

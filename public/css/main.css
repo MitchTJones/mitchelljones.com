@@ -275,6 +275,14 @@ a.t-black:active {
 	background: linear-gradient(180deg,#0e638a,#1f364d);
 }
 
+.btn-light {
+	color:#373737;
+}
+.btn-light:hover {
+	cursor:pointer;
+	background-color: rgba(255,255,255,.75);
+}
+
 
 @media only screen and (max-width: 770px) {
 	.main-nav {

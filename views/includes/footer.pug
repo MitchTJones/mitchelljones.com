@@ -12,10 +12,10 @@ script.
 	var isHome = document.title == 'Mitchell Jones';
 	/* Premade functions so we don't have to check isHome on every click. */
 	function scr() {
-		scrollTo($(this).attr('id').split('-')[1], 1000);
+		scrollTo($(this).attr('to'), 1000);
 	}
 	function lnk() {
-		window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('id').split('-')[1];
+		window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
 	}
 	if (isHome)
 		$('.jlink').click(scr);
