@@ -5,7 +5,7 @@ html
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		include ./includes/gtag.pug
 		// normalize
-		link(rel='stylesheet', href='/css/normalize.css')
+		link(rel='stylesheet', href='/css/normalize-min.css')
 		include ./includes/favicos.pug
 		// JQuery
 		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
@@ -14,10 +14,10 @@ html
 		title Mitchell Jones
 		meta(name='description', content='Mitchell Jones is a programmer, writer, and student dedicated to expanding the scope of computer science to encompass all aspects of human civilization and society')
 		// my stuff
-		link(rel='stylesheet', href='/css/main.css')
-		link(rel='stylesheet', href='/css/hexagons.css')
-		link(rel='stylesheet', href='/home/main.css')
-		script(src='/js/functions.js')
+		link(rel='stylesheet', href='/css/main-min.css')
+		link(rel='stylesheet', href='/css/hexagons-min.css')
+		link(rel='stylesheet', href='/home/main-min.css')
+		script(src='/js/functions-min.js')
 	body
 		section#top.bg-grad
 			canvas#demo.cbg
@@ -71,5 +71,5 @@ html
 				p #[a(href='https://github.com/MitchTJones') GitHub]
 		canvas(id='bg' class='cbg')
 	include ./includes/footer.pug
-	script(src='/home/shapes.js')
-	script(src='/home/demo.js')
+	script(src='/home/shapes-min.js')
+	script(src='/home/demo-min.js')
