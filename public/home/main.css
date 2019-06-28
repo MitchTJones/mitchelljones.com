@@ -9,46 +9,55 @@
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Thin 100.ttf');
 	font-weight:100;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Extra-Light 200.ttf');
 	font-weight:200;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Light 300.ttf');
 	font-weight:300;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Normal 400.ttf');
 	font-weight:400;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Medium 500.ttf');
 	font-weight:500;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Semi-Bold 600.ttf');
 	font-weight:600;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Bold 700.ttf');
 	font-weight:700;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Extra-Bold 800.ttf');
 	font-weight:800;
+	font-display:swap;
 }
 @font-face {
 	font-family: 'Mosk';
 	src: url('/fonts/Mosk/Mosk Ultra-Bold 900.ttf');
 	font-weight:900;
+	font-display:swap;
 }
 
 body {
