@@ -2,14 +2,34 @@ extends layout.pug
 
 block head
 	title #{prData.title}
-	link(rel='stylesheet', href='/projects/main-min.css')
 	meta(name='description', content='')
+	style(type='text/css').
+		@media only screen and (max-width: 770px) {
+			.content {
+				flex-direction:column;
+			}
+			.links {
+				display:none;
+			}
+			#links-dropper {
+				display:block;
+				position:absolute;
+				top:20px;
+				right:20px;
+			}
+		}
+		#links-dropper {
+			display: none;
+		}
 block content
 	#sidebar.bg-1
 		ul.sidebar-nav
+			a#links-dropper
+				img(src=
 			li
 				h2 #{prData.title}
-			for i in prData.pages
-				li
-					a(href=i.link) #{i.name}
+			div.links
+				for i in prData.pages
+					li
+						a(href=i.link) #{i.name}
 	.markdown-body!=content
