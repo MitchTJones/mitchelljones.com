@@ -1,0 +1,7 @@
+user-agent: *
+Disallow: /img/logos/
+Disallow: /img/project-snapshots/
+Disallow: /projects/js/icons/
+Disallow: /downloads/
+Allow: /
+Sitemap: https://mitchelljones.com/sitemap.xml

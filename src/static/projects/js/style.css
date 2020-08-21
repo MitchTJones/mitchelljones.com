@@ -1,0 +1,127 @@
+html, body {
+	margin:0px;
+	padding:0px;
+	height:100%;
+	width:100%;
+}
+
+#canvascontainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:100%;
+	width:100%;	
+}
+canvas {
+	background-color: #202020;
+	height:100%;
+	width:100%;
+}
+
+input, input {
+	display:none;		/* Hides the actual tickbox */
+}
+input[id=tooltoggle] + label {
+	background: url('icons/icon_tools.png');
+}
+input[id=abouttoggle] + label {
+	background: url('icons/icon_about.png');
+}
+input[id=creditstoggle] + label {
+	background: url('icons/icon_credits.png');
+}
+input[id=tool_push] + label {
+	background: url('icons/icon_tools_push.png');
+}
+input[id=tool_pull] + label {
+	background: url('icons/icon_tools_pull.png');
+}
+input[id=tool_twist] + label {
+	background: url('icons/icon_tools_twist.png');
+}
+input[id=tool_freeze] + label {
+	background: url('icons/icon_tools_freeze.png');
+}
+input[id=tool_reset] + label {
+	background: url('icons/icon_tools_reset.png');
+}
+input[id=tool_infinity] + label {
+	background: url('icons/icon_tools_infinity.png');
+}
+input[id=switch] + label {
+	background: url('icons/icon_switch.png');
+}
+input[id=home] + label {
+	background: url('icons/icon_home.png');
+}
+
+
+input[type=checkbox] + label, input[type=radio] + label, input[type=button] + label, input[type="range"] {
+	margin-top:5px;
+	filter:brightness(0) invert(1);	/* inverts all-black icon to white */
+	background-size: 100%;
+	height: 40px;
+	display:inline-block;
+	padding: 0 0 0 0px;
+	opacity:0.2;
+}
+
+input[type=checkbox] + label, input[type=radio] + label, input[type=button] + label {
+	width: 40px;
+}
+
+input[class=big] + label {
+	width:150px;
+	height:150px;
+}
+
+input[type=checkbox] + label:hover, input[type=radio] + label:hover, input[type="button"] + label:hover {
+	opacity:0.35;
+	cursor:pointer;
+}
+
+input[type=checkbox]:checked + label, input[type=radio]:checked + label {
+	opacity:0.5;
+}
+
+input[type='range'] {
+	position:absolute;
+	-webkit-transform: rotate(90deg);
+	-webkit-transform-origin:left;
+	width:200px;
+	margin-top:0px;
+	margin-left:20px;
+}
+
+.topright {
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+.botright {
+	position:absolute;
+	bottom:0;
+	right:0;
+}
+
+.topleft {
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.botleft {
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	user-select: none;           /* Non-prefixed version*/
+}

@@ -1,0 +1,79 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        include ./includes/gtag.pug
+        include ./includes/favicos.pug
+        // JQuery
+        script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+        // Bootstrap CSS
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        title Mitchell Jones
+        meta(name='description', content='Mitchell Jones is a programmer, writer, and student dedicated to expanding the scope of computer science to encompass all aspects of human civilization and society')
+        // Etc.
+        link(rel='stylesheet', href='/css/main.min.css')
+        link(rel='stylesheet', href='/css/home.min.css')
+        script(src='/js/functions.min.js')
+    body
+        section#top.bg-grad
+            canvas#demo.cbg
+            #blurb.noselect.text-shadow.front
+                h1 Mitchell Jones
+                nav.navbar.navbar-inverse
+                    ul.navbar-nav.flex-grow
+                        li.nav-item
+                            a.nav-link.jlink.t-white(to='projects') Projects
+                        li.nav-item
+                            a.nav-link.jlink.t-white(to='about') About
+                        li.nav-item
+                            a.nav-link.t-white(href='/cv' to='cv') CV
+                        li.nav-item
+                            a.nav-link.t-white.jlink(to='contact') Contact
+            #abt-demo.topleft.noselect
+                p Demo: #[b Light Fabric]; #[a.t-white(href='/projects/js/light') Learn More].
+    section#projects
+        ul#hexGrid
+            each val, index in prData
+                li.hex
+                    .hexIn
+                        if (val.link == '')
+                            a.hexLink.noselect
+                                img(src='/img/project-snapshots/thumbnail-' + index + '.png')
+                                h1.bg-2.t-1 #{val.title};
+                                h2 Coming Soon
+                                p.bg-2.t-1 #{val.desc}
+                        else
+                            a.hexLink.noselect(href=val.link)
+                                img(src='/img/project-snapshots/thumbnail-' + index + '.png')
+                                h1.bg-2.t-1 #{val.title}
+                                p.bg-2.t-1 #{val.desc}
+    section#about.bg-2.front
+        img(src='/img/notability.png')
+        .abt.container.text-justify
+            p.t-1 Hi! I'm Mitch. I was born in Brisbane, Australia, and, after spending some time in France, I ended up living in Las Vegas, Nevada. I graduated from  #[a.a-1(href='https://www.choate.edu/') Choate Rosemary Hall] in 2018 and I'm currently a junior computer science major at the #[a.a-1(href='https://www.rochester.edu/') University of Rochester].
+            p.t-1 While the subject of this website - computer science - is my main interest, my passions range from philosophy to frisbee. What I've decided to dedicate myself to studying, though, are the intersections that computer science shares with other disciplines like political science and the humanities; how computers can be best used to advance human civilization and knowledge. For the time being, my intrigue lies in AI, blockchain, and machine vision.
+            p.t-1 I've worked with PhD-level research groups at #[a.a-1(href='http://sydney.edu.au/science/physics/sifa/') Sydney University's Institute for Astronomy] and #[a.a-1(href='https://www.ini.uzh.ch/') ETH Zürich's Institute of Neuroinformatics], but I spend most of my time trying to teach myself new things through projects like this website.
+            p.t-1 Welcome to (the beginning of) my story as a student, coder, and citizen, where anybody can stop by, learn something, and have some fun.
+            div.row.mt-5
+                div.col-sm-4.d-flex.justify-content-center
+                    button.jlink(to='projects' type='button' class='btn btn-light btn-lg') Projects
+                div.col-sm-4.d-flex.justify-content-center
+                    button(onclick='window.location.href="https://www.mitchelljones.com/cv/"' type='button' class='btn btn-light btn-lg') Curriculum Vitae
+                div.col-sm-4.d-flex.justify-content-center
+                    button.jlink(to='contact' type='button' class='btn btn-light btn-lg') Get in Touch
+
+    section#etc.wrapper
+        #contact.jumbotron.front
+            .c-item.profilepic
+                img(src='/img/profile.png')
+            .c-item.contactinfo
+                h2 Contact Me
+                p #[a(href='mailto:mitch@mitchelljones.com') mitch@mitchelljones.com]
+                p #[a(href='mailto:mjones65@u.rochester.edu') mjones65@u.rochester.edu]
+                p #[a(href='https://www.linkedin.com/in/mitchelltjones') LinkedIn]
+                p #[a(href='https://github.com/MitchTJones') GitHub]
+        canvas(id='bg' class='cbg')
+    include ./includes/footer.pug
+    script(src='/js/shapes.min.js')
+    script(src='/js/demo.min.js')

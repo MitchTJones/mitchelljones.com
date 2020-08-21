@@ -1,0 +1,63 @@
+<!DOCTYPE html><html class="html"><head><!-- included in every page--><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141771724-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-141771724-1');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- JQuery--><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap CSS--><link rel="stylesheet" href="/css/bootstrap.min.css"><!-- favicons--><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/favicons//favicons/apple-touch-icon-152x152.png"><link rel="icon" type="image/png" href="/favicons/favicon-196x196.png" sizes="196x196"><link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicons/favicon-128.png" sizes="128x128"><meta name="application-name" content=" "><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png"><!-- my stuff--><link rel="stylesheet" href="/css/main.min.css"><script src="/js/functions.min.js"></script><title>Cellular Automata</title><meta name="description" content=""><style type="text/css">@media only screen and (max-width: 770px) {
+	.content {
+		flex-direction:column;
+	}
+	#sidebar {
+		flex-grow:0;
+	}
+}</style></head><body class="body"><header class="noselect" id="header"><nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse main-nav"><ul class="nav navbar-nav flex-grow justify-content-start"><li class="nav-item"><a class="nav-link jlink" id="l-projects" to="projects">Projects</a></li><li class="nav-item"><a class="nav-link jlink" id="l-about" to="about">About</a></li></ul><ul class="nav navbar-nav flex-grow justify-content-center"><li class="nav-item"><a class="nav-link heavy jlink" id="l-home" to="demo"><img src="/img/logos/logo.png"></a></li></ul><ul class="nav navbar-nav flex-grow justify-content-end"><li class="nav-item"><a class="nav-link" id="l-cv" href="/cv">CV</a></li><li class="nav-item"><a class="nav-link jlink" id="l-contact" to="contact">Contact</a></li></ul></nav></header><div class="content"><div class="bg-1" id="sidebar"><ul class="sidebar-nav"><li><h2>Cellular Automata</h2></li><div class="links"><li><a href="/projects/gol/intro">Introduction</a></li></div></ul></div><div class="markdown-body"><h2 id="conwaysgameoflife">Conway's Game of Life</h2>
+<p>Conway's Game of Life is a Cellular Automaton that demonstrates <em>emergence.</em> Emergence, in this context, means the emergence of complex properties from simple parts of a system. A really great example of emergence is in animal life on Earth; individual cells are very basic and can't really get a whole lot done on their own, but when you put a bunch of identical cells in a big group together - <strong><em>bam!</em></strong> - you get a human. Okay, it doesn't quite work like that, but its the general idea that matters. A lot of simple parts can come together to create an incredibly complex whole. Really any matter is also an example of emergence, considering that its all made up of tiny atoms that are <em>very</em> simple, and then, going further, even simpler subatomic particles.</p>
+<p><a href="https://mitchtjones.github.io/JS-Game-of-Life/">Click here to play my demo</a>; keep reading if you have no idea what's going on.</p>
+<h3 id="thegameoflife">The Game of Life</h3>
+<p>In Conway's Game, there is a grid of square cells. Each cell has eight neighbors (the cells directly adjacent to it horizontally, vertically, and diagonally), and is either dead or alive (0 or 1, false or true, etc.). All computations done within the system are done by the individual cells. Each cell is capable of looking at its neighbors, counting how many are alive, and reacting with the following set of simple logic:</p>
+<p>If a live cell has fewer than two living neighbors, it dies.</p>
+<p>If a live cell has more than three living neighbors, it dies.</p>
+<p>If a dead cell has exactly three living neighbors, it is revived.</p>
+<p>If none of the above are true, the cell retains its current state.</p>
+<p>Every cell updates at the same time based on the previous states of its neighboring cells. Each update is called a <em>generation</em>.</p>
+<h3 id="sowhat">So what?</h3>
+<p>Because Conway's Game of Life is dependent entirely on the very basic capabilities of each cell, any functions outside of those very few listed above are demonstrations of emergence - more complex characteristics developing from the combination of many basic parts. And there are a <em>lot</em> of emergent functions in the Game of Life. In fact, theoretically, the Game of Life can perform any function your computer can, because it's "Turing complete" - I'll talk more about that in a bit, though. For now, lets look at some interesting structures we can set up in the Game of Life.</p>
+<p>There are three main categories of structure in the Game of Life: Still lifes, which don't do anything; Oscillators, which do funky things but always return to their original state after a set period; and Spaceships, which can move themselves across the grid. Here are a few of the most common structures:</p>
+<p>| <strong>Still Lifes</strong> | <strong>Oscillators</strong> | <strong>Spaceships</strong> |
+| :---------------------------------:|:---------------------------------:|:-----------------------------:|
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Game_of_life_boat.svg/82px-Game_of_life_boat.svg.png" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Game_of_life_blinker.gif" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Game_of_life_animated_glider.gif" alt="" /> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Game_of_life_beehive.svg/98px-Game_of_life_beehive.svg.png" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Game_of_life_toad.gif" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Game_of_life_animated_LWSS.gif" alt="" /> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Game_of_life_loaf.svg/98px-Game_of_life_loaf.svg.png" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Game_of_life_beacon.gif" alt="" /> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Game_of_life_boat.svg/82px-Game_of_life_boat.svg.png" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Game_of_life_pulsar.gif" alt="" /> |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Game_of_life_flower.svg/82px-Game_of_life_flower.svg.png" alt="" /> | <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/I-Column.gif" alt="" /> |</p>
+<p>Now that we've gone through the most common basic structures, let's get a little bit more complex. Here's a glider gun - a structure that periodically shoots off gliders. This and gliders themselves are the foundation for a lot of complex structures in Game of Life, and are instrumental in creating logic gates like we talk about in the next section.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Gospers_glider_gun.gif/220px-Gospers_glider_gun.gif" alt="" /></p>
+<p><em>(Images from <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Wikipedia</a>)</em></p>
+<h3 id="turingcompleteness">Turing Completeness</h3>
+<p>Conway's Game of Life is "Turing Complete" - but what does this actually mean?</p>
+<p>"Turing Completeness is the ability for a system of instructions to simulate a Turing Machine" (<a href="https://en.wikipedia.org/wiki/Turing_machine">Wikipedia</a>). What this means is that, if something is Turing Complete, it is capable of expressing all tasks accomplishable by computers. We know that all a computer can really do is simulate logical gates, like NOT (if true, then false), AND(if all inputs true, then true), and OR (if an input is true, then true). Believe it or not, we can actually simulate any of these logical gates within Conway's Game of Life using gliders as inputs and outputs!</p>
+<p>Now, this is where things get complicated and you're probably better off reading about it from people who know a lot more than me - here's a great, pretty easy-to-read <a href="http://www.rennard.org/alife/CollisionBasedRennard.pdf">paper on logic gates in Game of Life</a>.</p>
+<p>When you're ready to get your mind absolutely blown, check out a few of my favorite ridiculously cool Game of Life states:</p>
+<p><a href="https://www.youtube.com/watch?v=3NDAZ5g4EuU">Digital Clock</a></p>
+<p><a href="https://www.youtube.com/watch?v=DD0B-4KNna8">Full Turing Machine</a></p>
+<p>And last, but not least, my personal favorite: <a href="https://www.youtube.com/watch?v=xP5-iIeKXE8">Conway's Game of Life in Conway's Game of Life</a></p></div></div><footer class="bg-2" id="footer"><span>Copyright © <span id="cDate"></span> Mitchell Jones</span></footer><script>function scrollTo(id, time) {
+	$('html, body').animate({
+		scrollTop: $('#'+id).offset().top
+	}, time);
+}
+var isHome = document.title == 'Mitchell Jones';
+/* Premade functions so we don't have to check isHome on every click. */
+function scr() {
+	scrollTo($(this).attr('to'), 1000);
+}
+function lnk() {
+	window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
+}
+if (isHome)
+	$('.jlink').click(scr);
+else
+	$('.jlink').click(lnk);
+/* Look for scroll parameter in URL and scroll */
+var params = new URLSearchParams(window.location.search);
+if (params.has('scroll'))
+	scrollTo(params.get('scroll'),1000);
+/* Set footer copyright year */
+$('#cDate').html(new Date().getFullYear());</script></body></html>

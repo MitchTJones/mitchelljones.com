@@ -1,0 +1,24 @@
+extends includes/layout.pug
+
+block head
+	title #{prData.title}
+	meta(name='description', content='')
+	style(type='text/css').
+		@media only screen and (max-width: 770px) {
+			.content {
+				flex-direction:column;
+			}
+			#sidebar {
+				flex-grow:0;
+			}
+		}
+block content
+	#sidebar.bg-1
+		ul.sidebar-nav
+			li
+				h2 #{prData.title}
+			div.links
+				for i in prData.pages
+					li
+						a(href='/projects/' + prData.name + '/' + i.link) #{i.name}
+	.markdown-body!=content

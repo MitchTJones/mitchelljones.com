@@ -1,0 +1,39 @@
+<!DOCTYPE html><html class="html"><head><!-- included in every page--><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141771724-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-141771724-1');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- JQuery--><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap CSS--><link rel="stylesheet" href="/css/bootstrap.min.css"><!-- favicons--><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/favicons//favicons/apple-touch-icon-152x152.png"><link rel="icon" type="image/png" href="/favicons/favicon-196x196.png" sizes="196x196"><link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicons/favicon-128.png" sizes="128x128"><meta name="application-name" content=" "><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png"><!-- my stuff--><link rel="stylesheet" href="/css/main.min.css"><script src="/js/functions.min.js"></script><title>JavaScript</title><meta name="description" content=""><style type="text/css">@media only screen and (max-width: 770px) {
+	.content {
+		flex-direction:column;
+	}
+	#sidebar {
+		flex-grow:0;
+	}
+}</style></head><body class="body"><header class="noselect" id="header"><nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse main-nav"><ul class="nav navbar-nav flex-grow justify-content-start"><li class="nav-item"><a class="nav-link jlink" id="l-projects" to="projects">Projects</a></li><li class="nav-item"><a class="nav-link jlink" id="l-about" to="about">About</a></li></ul><ul class="nav navbar-nav flex-grow justify-content-center"><li class="nav-item"><a class="nav-link heavy jlink" id="l-home" to="demo"><img src="/img/logos/logo.png"></a></li></ul><ul class="nav navbar-nav flex-grow justify-content-end"><li class="nav-item"><a class="nav-link" id="l-cv" href="/cv">CV</a></li><li class="nav-item"><a class="nav-link jlink" id="l-contact" to="contact">Contact</a></li></ul></nav></header><div class="content"><div class="bg-1" id="sidebar"><ul class="sidebar-nav"><li><h2>JavaScript</h2></li><div class="links"><li><a href="/projects/js/light">Light Fabric</a></li><li><a href="/projects/js/vectors">Black Holes</a></li><li><a href="/projects/js/gravity">Interstellar</a></li><li><a href="/projects/js/lowpoly">Low Poly</a></li><li><a href="/projects/js/trig">Hypnotic</a></li></div></ul></div><div class="markdown-body"><h3 id="lowpoly">Low Poly</h3>
+<p>Click [here]() (work in progress) to make your own visual!</p>
+<p>The 'low-poly' style has always been my favorite visual art style. For my game, <a href="/projects/dsgame/intro">Battle Blocks</a>, I used other people's triangulation software to make lowpoly images for my backgrounds.</p>
+<p>This wasn't a great idea for two reasons: they are still and make static screens like menus pretty boring, and I was using other people's work to do something I could feasibly do myself, learning a lot in the process.</p>
+<p>This was definitely the most challenging project on this page to make, because the gradient coloring was done from scratch. I'll make sure to make some documentation detailing the different functions used, as well as a "make your own" section, because I made the gradient function very versatile.</p>
+<p><center><iframe style='width:50vw;height:30vw;' src='/projects/js/lowpoly.html'></iframe></center>
+<center><a href='/projects/js/lowpoly.html'>Full Page</a></center></p></div></div><footer class="bg-2" id="footer"><span>Copyright © <span id="cDate"></span> Mitchell Jones</span></footer><script>function scrollTo(id, time) {
+	$('html, body').animate({
+		scrollTop: $('#'+id).offset().top
+	}, time);
+}
+var isHome = document.title == 'Mitchell Jones';
+/* Premade functions so we don't have to check isHome on every click. */
+function scr() {
+	scrollTo($(this).attr('to'), 1000);
+}
+function lnk() {
+	window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
+}
+if (isHome)
+	$('.jlink').click(scr);
+else
+	$('.jlink').click(lnk);
+/* Look for scroll parameter in URL and scroll */
+var params = new URLSearchParams(window.location.search);
+if (params.has('scroll'))
+	scrollTo(params.get('scroll'),1000);
+/* Set footer copyright year */
+$('#cDate').html(new Date().getFullYear());</script></body></html>

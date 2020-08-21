@@ -1,0 +1,62 @@
+<!DOCTYPE html><html class="html"><head><!-- included in every page--><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141771724-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-141771724-1');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- JQuery--><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap CSS--><link rel="stylesheet" href="/css/bootstrap.min.css"><!-- favicons--><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/favicons//favicons/apple-touch-icon-152x152.png"><link rel="icon" type="image/png" href="/favicons/favicon-196x196.png" sizes="196x196"><link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicons/favicon-128.png" sizes="128x128"><meta name="application-name" content=" "><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png"><!-- my stuff--><link rel="stylesheet" href="/css/main.min.css"><script src="/js/functions.min.js"></script><title>Battle Blocks</title><meta name="description" content=""><style type="text/css">@media only screen and (max-width: 770px) {
+	.content {
+		flex-direction:column;
+	}
+	#sidebar {
+		flex-grow:0;
+	}
+}</style></head><body class="body"><header class="noselect" id="header"><nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse main-nav"><ul class="nav navbar-nav flex-grow justify-content-start"><li class="nav-item"><a class="nav-link jlink" id="l-projects" to="projects">Projects</a></li><li class="nav-item"><a class="nav-link jlink" id="l-about" to="about">About</a></li></ul><ul class="nav navbar-nav flex-grow justify-content-center"><li class="nav-item"><a class="nav-link heavy jlink" id="l-home" to="demo"><img src="/img/logos/logo.png"></a></li></ul><ul class="nav navbar-nav flex-grow justify-content-end"><li class="nav-item"><a class="nav-link" id="l-cv" href="/cv">CV</a></li><li class="nav-item"><a class="nav-link jlink" id="l-contact" to="contact">Contact</a></li></ul></nav></header><div class="content"><div class="bg-1" id="sidebar"><ul class="sidebar-nav"><li><h2>Battle Blocks</h2></li><div class="links"><li><a href="/projects/dsgame/intro">Introduction</a></li><li><a href="/projects/dsgame/summary">Battle Blocks - A Summary</a></li><li><a href="/projects/dsgame/reflection">Reflection</a></li><li><a href="/projects/dsgame/devblog1">Devblog 1 - 09/24/2017</a></li><li><a href="/projects/dsgame/devblog2">Devblog 2 - 10/01/2017</a></li><li><a href="/projects/dsgame/devblog3">Devblog 3 - 10/08/2017</a></li><li><a href="/projects/dsgame/devblog4">Devblog 4 - 11/05/2017</a></li><li><a href="/projects/dsgame/downloads">Downloads</a></li></div></ul></div><div class="markdown-body"><h2 id="devblog310082017">Devblog 3 - 10/08/2017</h2>
+<h3 id="shooting">Shooting</h3>
+<p>This week I worked on shooting mechanics - they're just a <em>little</em> bit important to a shooter game.</p>
+<video autoplay loop>
+<source src='/projects/dsgame/video/ShootingDemo1.mp4'>
+</video>
+<p>Oh yeah, and I also fixed that pesky bug seen at the end of the demo from <a href="devblog2">the last devblog</a> where players float in the air if their turn ends while they are falling - now the turn can exceed 300 frames, but only to complete actions started within the 300, like falling; player control is disabled when the 300 frames are exhausted.</p>
+<h4 id="approach">Approach</h4>
+<p>In my mind, there are two fundamentally different ways of approaching the issue of shooting:</p>
+<ul>
+<li><p>[Spacebar] shoots straight in the direction you're facing (jump is rebound to [W]/[up])</p></li>
+<li><p>[Mouseclick] shoots where your cursor is pointing</p></li>
+</ul>
+<p>The second option would give the player more control, but <em>more</em> isn't always <em>better</em>. I really like the simplicity of the first option and the idea that this can be a mouse-less game - there are too few games that can be played solely on a keyboard.</p>
+<p>I plan on revisiting this in the future, especially if the special weapons from <a href="devblog1">my first devblog</a> end up being implemented. For now, though, I'm going with option 1 for its elegance and simplicity.</p>
+<h4 id="implementation">Implementation</h4>
+<h5 id="local">Local</h5>
+<p>In Unity, hitting the spacebar instantiates a 'Projectile' GameObject - just a purple square that moves forward when you tell it to (<em>Surprise: we tell it to</em>). It's fired with a speed vector of (10<em>x</em> , 0), the x being either 1 or -1 depending on where the player is facing.
+<a name='skippoint-shotobject'></a>
+A 'Shot' object is also created to record the properties of the shot - this is later sent to the server as part of the turn. The 'Shot' object holds values like what frame the shot was fired on, its initial speed (10<em>x</em> , 0) and its type (if I choose to put in different types in the future). The necessity for the 'Shot' object is elaborated on in the next section:</p>
+<h5 id="networking">Networking</h5>
+<p>This is where things get tricky. Before this week, the way turns were networked was simply that the player's movements were recorded into an array of Vector2's ([x,y]) and that array was sent to the enemy player when the turns were played.</p>
+<p>Initially, I thought to approach shooting the same way, and actually got pretty far with my plan before realizing its stupidity. I created a 'TurnFrame' object that holds two Vector2 arrays - one for the player and one for the player's shot. This method has a multitude of flaws:</p>
+<ul>
+<li>It doubles the amount of data sent to and from the server for turn communications</li>
+<li>There's no effective way of handling if the player decided not to shoot</li>
+<li>There's no effective way of implementing different weapons and bullets in the future</li>
+</ul>
+<p>So, I thought, if projectiles behave the exact same way on both clients, don't I just need to send the frame that the player fired along with the original turn Vector2 array, and then when the replay of the turn reaches that frame it fires? This is a big improvement, but there are two issues in that the projectile doesn't know which direction to go (the enemy player object on the client-side is just a red box that gets moved according to the Vector2 array - it has no properties so we don't know where it's facing).</p>
+<p>So I settled for a compromise between the two - for now, the 'Turn' object that is sent to the server has two parts: a Vector2 array for the players positions, and the <a href="#skippoint-shotobject">'Shot' object</a>. There's probably a more efficient way of handling this, but this method works great for now.</p></div></div><footer class="bg-2" id="footer"><span>Copyright © <span id="cDate"></span> Mitchell Jones</span></footer><script>function scrollTo(id, time) {
+	$('html, body').animate({
+		scrollTop: $('#'+id).offset().top
+	}, time);
+}
+var isHome = document.title == 'Mitchell Jones';
+/* Premade functions so we don't have to check isHome on every click. */
+function scr() {
+	scrollTo($(this).attr('to'), 1000);
+}
+function lnk() {
+	window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
+}
+if (isHome)
+	$('.jlink').click(scr);
+else
+	$('.jlink').click(lnk);
+/* Look for scroll parameter in URL and scroll */
+var params = new URLSearchParams(window.location.search);
+if (params.has('scroll'))
+	scrollTo(params.get('scroll'),1000);
+/* Set footer copyright year */
+$('#cDate').html(new Date().getFullYear());</script></body></html>

@@ -1,0 +1,172 @@
+{
+	"prData": {
+		"dsgame": {
+			"name":"dsgame",
+			"template":"project",
+			"title":"Battle Blocks",
+			"desc":"The final project of my DS in Interactive Media",
+			"link":"/projects/dsgame/intro",
+			"pages": [
+				{
+					"link":"intro",
+					"name":"Introduction"
+				},{
+					"link":"summary",
+					"name":"Battle Blocks - A Summary"
+				},{
+					"link":"reflection",
+					"name":"Reflection"
+				},{
+					"link":"devblog1",
+					"name":"Devblog 1 - 09/24/2017"
+				},{
+					"link":"devblog2",
+					"name":"Devblog 2 - 10/01/2017"
+				},{
+					"link":"devblog3",
+					"name":"Devblog 3 - 10/08/2017"
+				},{
+					"link":"devblog4",
+					"name":"Devblog 4 - 11/05/2017"
+				},{
+					"link":"downloads",
+					"name":"Downloads"
+				}
+			]
+		},
+		"zurich": {
+			"name":"zurich",
+			"template":"project",
+			"title":"Neuromorphic Computing",
+			"desc":"Small demos from my internship at INI in Zurich.",
+			"link":"/projects/zurich/intro",
+			"pages": [
+				{
+					"link":"intro",
+					"name":"Introduction"
+				},{
+					"link":"https://mitchtjones.github.io/JS-Game-of-Life/",
+					"name":"Cellular Automata"
+				},{
+					"link":"",
+					"name":"more demos to be uploaded!"
+				}
+			]
+		},
+		"sydney": {
+			"name":"sydney",
+			"template":"project",
+			"title":"Light Curves",
+			"desc":"A small project from my internship at SIfA in Sydney.",
+			"link":"/projects/sydney/intro",
+			"pages": [
+				{
+					"link":"intro",
+					"name":"Introduction"
+				},{
+					"link":"EPIC_211342524",
+					"name":"Star 1"
+				},{
+					"link":"EPIC_211509553",
+					"name":"Star 2"
+				},{
+					"link":"EPIC_212521166",
+					"name":"Star 3"
+				}
+			]
+		},
+		"js": {
+			"name":"js",
+			"template":"project",
+			"title":"JavaScript",
+			"desc":"Small visual projects in JavaScript with HTML Canvas",
+			"link":"/projects/js/vectors",
+			"pages": [
+				{
+					"link":"light",
+					"name":"Light Fabric"
+				},{
+					"link":"vectors",
+					"name":"Black Holes"
+				},{
+					"link":"gravity",
+					"name":"Interstellar"
+				},{
+					"link":"lowpoly",
+					"name":"Low Poly"
+				},{
+					"link":"trig",
+					"name":"Hypnotic"
+				}
+			]
+		},
+		"gol": {
+			"name":"gol",
+			"template":"project",
+			"title":"Cellular Automata",
+			"desc":"A demonstration of emergence in computing.",
+			"link":"https://mitchtjones.github.io/JS-Game-of-Life/",
+			"pages": [
+				{
+					"link":"intro",
+					"name":"Introduction"
+				}
+			]
+		},
+		"erc20": {
+			"name":"erc20",
+			"title":"ERC-20 Wallet",
+			"desc":"A template wallet for Ethereum ERC-20 tokens.",
+			"link":"https://github.com/MitchTJones/ERC-20-Token-Wallet"
+		},
+		"lockepocket": {
+			"name":"lockepocket",
+			"title":"Locke Pocket",
+			"desc":"The official wallet for the cryptocurrency Locke.",
+			"link":"https://lockepocket.com"
+		},
+		"mitchelljones.com": {
+			"name":"mitchelljones.com",
+			"title":"mitchelljones.com",
+			"desc":"The GitHub repository for this site.",
+			"link":"https://github.com/MitchTJones/mitchelljones.com"
+		},
+		"blocktrack": {
+			"name":"blocktrack",
+			"title":"Block Track",
+			"desc":"Live updating cryptocurrency price tracker",
+			"link":""
+		},
+		"processing": {
+			"name":"processing",
+			"template":"project",
+			"title":"Processing",
+			"desc":"Some of my first ever coding projects using Processing.",
+			"link":"/projects/processing/snakelite",
+			"pages": [
+				{
+					"link":"snakelite",
+					"name":"Snakelite"
+				},{
+					"link":"bouncebreak",
+					"name":"Bouncebreak"
+				},{
+					"link":"nomanstank",
+					"name":"No Man's Tank"
+				},{
+					"link":"procedural",
+					"name":"Procedural Art"
+				},{
+					"link":"blobwar",
+					"name":"Blob War"
+				}
+			]
+		},
+		"lowpoly": {
+			"name":"lowpoly",
+			"title":"Low Poly",
+			"desc":"A JavaScript low-poly image generator.",
+			"link":""
+		}
+	}
+}

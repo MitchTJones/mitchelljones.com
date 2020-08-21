@@ -1,0 +1,197 @@
+//Nodes
+Node[] nodes = new Node[50];
+
+//UI
+ArrayList<UIElement> ui = new ArrayList<UIElement>();
+ArrayList<Display> helpUI = new ArrayList<Display>();
+
+//Misc.
+boolean wasMousePressed;
+int algorithm = 5;
+color bg = 125;
+
+void setup() {
+  size(800,600);
+  init();
+}
+
+void init() {
+  rectMode(CENTER);
+  ellipseMode(CENTER);
+  textAlign(CENTER, CENTER);
+  background(bg);
+  //Initialize Nodes
+  redo();
+  //Initialize UI
+  ui.add(new OnePress(width-40, 20, 50, 20, "Wipe"));
+  ui.add(new OnePress(width-40, 45, 50, 20, "Run"));
+  ui.add(new Display (width-55, 70, 20, 20, str(algorithm)));
+  ui.add(new Switch  (width-25, 70, 20, 20, "?"));
+  ui.add(new Switch  (width-140, 20, 125, 20, "This Frame Only")); 
+  
+  helpUI.add(new Display(740, 100, 110, 20, "   Press 1, 2 or 3"));
+  helpUI.add(new Display(740, 125, 110, 20, "   1. sin(rng), cos(rng)"));
+  helpUI.add(new Display(740, 150, 110, 20, "   2. tan(i), sin(i)"));
+  helpUI.add(new Display(740, 175, 110, 20, "   3. random"));
+  helpUI.add(new Display(740, 200, 110, 20, "   4. cone"));
+  helpUI.add(new Display(740, 225, 110, 20, "   5. up & down"));
+}
+
+void draw() {
+  if (ui.get(4).on || ui.get(0).on) {
+    background(bg);
+  }
+  //Nodes
+  for (int i = 0; i < nodes.length; i++) {
+    if (algorithm == 1)
+      nodes[i].move(sin(random(TWO_PI))*20, cos(random(TWO_PI))*20);
+    else if (algorithm == 2)
+      nodes[i].move(tan(i), sin(i));
+    else if (algorithm == 3)
+      nodes[i].move(random(50)-25,random(50)-25);
+    else if (algorithm == 4)
+      nodes[i].move(sin(i)/(float)Math.pow(i,2), sin(i)/(float)Math.pow(i,2));
+    else if (algorithm == 5)
+      nodes[i].move(-sin(random(TWO_PI)*20)/(cos(random(TWO_PI))*2), (sin(random(TWO_PI))*20)/(cos(random(TWO_PI))*2));
+    nodes[i].grow(-2);
+    nodes[i].display();
+  }
+  
+  //UI
+  ui.get(2).update(str(algorithm));
+  for (int i = 0; i < ui.size(); i++) {
+    ui.get(i).refresh();
+    for (int n = 0; n < helpUI.size(); n++) {
+      if (ui.get(3).on) {
+        helpUI.get(n).refresh();
+      } else {
+        noStroke();
+        fill(bg);
+        rect(helpUI.get(n).loc.x, helpUI.get(n).loc.y, helpUI.get(n).size.x+2, helpUI.get(n).size.y+2);
+      }
+    }
+  }
+  if (ui.get(1).on) {
+    redo();
+  }
+  wasMousePressed = mousePressed;
+}
+
+void redo() {
+  for (int i = 0; i < nodes.length; i++) {
+    nodes[i] = new Node(width/2, height/2, 150, 150, color(random(255), random(255), random(255)), (255));
+  }
+}
+
+void keyPressed() {
+  for (int i = 0; i < 10; i++) {
+    if (keyCode == 49+i) 
+      algorithm = i+1;
+  }
+}
+
+class Node {
+  PVector loc = new PVector();
+  PVector size = new PVector();
+  PVector speed = new PVector();
+  color fg;
+  color str;
+
+  Node(float x, float y, float xSize, float ySize, color _fg, color _str) {
+    loc.set(x, y);
+    size.set(xSize, ySize);
+    fg = _fg;
+    str = _str;
+  }
+
+  void move(float xSpeed, float ySpeed) {
+    speed.set(xSpeed,ySpeed);
+    loc.x += speed.x;
+    loc.y += speed.y;
+  }
+
+  void grow(float factor) {
+    if (size.x > 0)
+      size.x += factor;
+    if (size.y > 0)
+      size.y += factor;
+  }
+
+  void display() {
+    fill(fg);
+    stroke(str);
+    ellipse(loc.x, loc.y, size.x, size.y);
+  }
+}
+
+class UIElement {
+  PVector loc;
+  PVector size;
+  String message;
+  boolean on;
+  boolean mouseOver() {
+    return mouseX > loc.x-size.x/2 && mouseX < loc.x+size.x/2 && mouseY > loc.y-size.y/2 && mouseY < loc.y+size.y/2;
+  }
+  boolean pressed() {
+    return mouseOver() && mousePressed && !wasMousePressed;
+  }
+  UIElement(float x, float y, float xSize, float ySize, String _message) {
+    loc = new PVector(x, y);
+    size = new PVector(xSize, ySize);
+    message = _message;
+  }
+  void update(String _message) {
+    message = _message;
+  }
+  void refresh() {
+    fill(255);
+    rect(loc.x, loc.y, size.x, size.y);
+    fill(0);
+    text(message, loc.x, loc.y);
+  }
+}
+
+class Display extends UIElement {
+  Display(float x, float y, float xSize, float ySize, String _message) {
+    super(x,y,xSize,ySize,_message);
+  }
+  void refresh() {
+    stroke(255);
+    fill(255);
+    super.refresh();
+  }
+}
+
+class Button extends UIElement {
+  Button(float x, float y, float xSize, float ySize, String _message) {
+    super(x,y,xSize,ySize,_message);
+  }
+  void refresh() {
+    if (on || mouseOver())
+      stroke(0);
+    else
+      stroke(255);
+    super.refresh();
+  }
+}
+
+class OnePress extends Button {
+  OnePress(float x, float y, float xSize, float ySize, String _message) {
+    super(x, y, xSize, ySize, _message);
+  }
+  void refresh() {
+    on = pressed();
+    super.refresh();
+  }
+}
+
+class Switch extends Button {
+  Switch(float x, float y, float xSize, float ySize, String _message) {
+    super(x, y, xSize, ySize, _message);
+  }
+  void refresh() {
+    if (pressed())
+      on = !on;
+    super.refresh();
+  }
+}

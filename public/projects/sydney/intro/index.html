@@ -1,0 +1,45 @@
+<!DOCTYPE html><html class="html"><head><!-- included in every page--><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141771724-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-141771724-1');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- JQuery--><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap CSS--><link rel="stylesheet" href="/css/bootstrap.min.css"><!-- favicons--><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/favicons//favicons/apple-touch-icon-152x152.png"><link rel="icon" type="image/png" href="/favicons/favicon-196x196.png" sizes="196x196"><link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicons/favicon-128.png" sizes="128x128"><meta name="application-name" content=" "><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png"><!-- my stuff--><link rel="stylesheet" href="/css/main.min.css"><script src="/js/functions.min.js"></script><title>Light Curves</title><meta name="description" content=""><style type="text/css">@media only screen and (max-width: 770px) {
+	.content {
+		flex-direction:column;
+	}
+	#sidebar {
+		flex-grow:0;
+	}
+}</style></head><body class="body"><header class="noselect" id="header"><nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse main-nav"><ul class="nav navbar-nav flex-grow justify-content-start"><li class="nav-item"><a class="nav-link jlink" id="l-projects" to="projects">Projects</a></li><li class="nav-item"><a class="nav-link jlink" id="l-about" to="about">About</a></li></ul><ul class="nav navbar-nav flex-grow justify-content-center"><li class="nav-item"><a class="nav-link heavy jlink" id="l-home" to="demo"><img src="/img/logos/logo.png"></a></li></ul><ul class="nav navbar-nav flex-grow justify-content-end"><li class="nav-item"><a class="nav-link" id="l-cv" href="/cv">CV</a></li><li class="nav-item"><a class="nav-link jlink" id="l-contact" to="contact">Contact</a></li></ul></nav></header><div class="content"><div class="bg-1" id="sidebar"><ul class="sidebar-nav"><li><h2>Light Curves</h2></li><div class="links"><li><a href="/projects/sydney/intro">Introduction</a></li><li><a href="/projects/sydney/EPIC_211342524">Star 1</a></li><li><a href="/projects/sydney/EPIC_211509553">Star 2</a></li><li><a href="/projects/sydney/EPIC_212521166">Star 3</a></li></div></ul></div><div class="markdown-body"><h2 id="introduction">Introduction</h2>
+<p>For the past few years, those interested in Astronomy have been hearing a lot about "Goldilocks planets," planets that are within the "habitable zone" - the range of distances from a star where planets could have liquid water, a crucial ingredient for life. The first exoplanet found to be within the habitable zone of a sun-like star was Kepler-22b, discovered in part by my advisor and mentor for this project, Professor Tim Bedding.</p>
+<p>Recently, discoveries like <a href="https://en.wikipedia.org/wiki/TRAPPIST-1">TRAPPIST-1</a>, a system with 7 Goldilocks planets, have gained a lot of media attention and are often accompanied by CGI renders like this:</p>
+<p><img src='/projects/sydney/trappist-1_2.jpg' style='width:45vh !important;'/></p>
+<p>When, in fact, even the highest resolution pictures we have of this system look like this:</p>
+<p><img src='/projects/sydney/trappist-1.jpg' style='width:45vh !important;'/></p>
+<p><em>So</em>, you ask, <em>how do we know anything about the planets if we can barely see the star??</em> One answer to this question, and the focus of my project in Sydney, is light curves.</p>
+<h3 id="lightcurves">Light Curves</h3>
+<p>A light curve is a simple graph that shows the brightness of an object over time. Despite their simplicity, light curves are incredibly powerful tools for Astronomers.</p>
+<p>As an example, here's a processed light curve for EPIC 211342524 - one of the stars I worked with in my project.</p>
+<p><img src='/projects/sydney/k2sc-curve.jpg' style='width:45vh !important;'/></p>
+<p>As you can see, there are distinct dips with similar depths and periods. These are called transits, and they happen when a planet passes in front of the star, blocking part of its light. Based on the period and the depth, we can tell how close the planet is to its star, how fast it's moving and how big it is.</p>
+<p>There are a few different pipelines that analyze and process images of these stars to create the data sets needed to make light curves. The 3 main ones are everest, k2sc and k2sff. My project was to analyze and compare the outputs of each one. The final program that I created - in Python, a new language I had never used before - imported and analyzed data files, outputting specific point data and graphics showing differences visually. I've got a few of these presentation-friendly visual comparisons of filtered light curves for each of the three stars I studied, <a href="EPIC_211342524">EPIC 211342524</a>, <a href="EPIC_211509553">EPIC 211509553</a> and <a href="EPIC_212521166">EPIC 212521166</a>.</p></div></div><footer class="bg-2" id="footer"><span>Copyright © <span id="cDate"></span> Mitchell Jones</span></footer><script>function scrollTo(id, time) {
+	$('html, body').animate({
+		scrollTop: $('#'+id).offset().top
+	}, time);
+}
+var isHome = document.title == 'Mitchell Jones';
+/* Premade functions so we don't have to check isHome on every click. */
+function scr() {
+	scrollTo($(this).attr('to'), 1000);
+}
+function lnk() {
+	window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
+}
+if (isHome)
+	$('.jlink').click(scr);
+else
+	$('.jlink').click(lnk);
+/* Look for scroll parameter in URL and scroll */
+var params = new URLSearchParams(window.location.search);
+if (params.has('scroll'))
+	scrollTo(params.get('scroll'),1000);
+/* Set footer copyright year */
+$('#cDate').html(new Date().getFullYear());</script></body></html>

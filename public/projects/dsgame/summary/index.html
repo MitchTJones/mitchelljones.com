@@ -1,0 +1,262 @@
+<!DOCTYPE html><html class="html"><head><!-- included in every page--><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141771724-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-141771724-1');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- JQuery--><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap CSS--><link rel="stylesheet" href="/css/bootstrap.min.css"><!-- favicons--><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/favicons//favicons/apple-touch-icon-152x152.png"><link rel="icon" type="image/png" href="/favicons/favicon-196x196.png" sizes="196x196"><link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicons/favicon-128.png" sizes="128x128"><meta name="application-name" content=" "><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png"><!-- my stuff--><link rel="stylesheet" href="/css/main.min.css"><script src="/js/functions.min.js"></script><title>Battle Blocks</title><meta name="description" content=""><style type="text/css">@media only screen and (max-width: 770px) {
+	.content {
+		flex-direction:column;
+	}
+	#sidebar {
+		flex-grow:0;
+	}
+}</style></head><body class="body"><header class="noselect" id="header"><nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse main-nav"><ul class="nav navbar-nav flex-grow justify-content-start"><li class="nav-item"><a class="nav-link jlink" id="l-projects" to="projects">Projects</a></li><li class="nav-item"><a class="nav-link jlink" id="l-about" to="about">About</a></li></ul><ul class="nav navbar-nav flex-grow justify-content-center"><li class="nav-item"><a class="nav-link heavy jlink" id="l-home" to="demo"><img src="/img/logos/logo.png"></a></li></ul><ul class="nav navbar-nav flex-grow justify-content-end"><li class="nav-item"><a class="nav-link" id="l-cv" href="/cv">CV</a></li><li class="nav-item"><a class="nav-link jlink" id="l-contact" to="contact">Contact</a></li></ul></nav></header><div class="content"><div class="bg-1" id="sidebar"><ul class="sidebar-nav"><li><h2>Battle Blocks</h2></li><div class="links"><li><a href="/projects/dsgame/intro">Introduction</a></li><li><a href="/projects/dsgame/summary">Battle Blocks - A Summary</a></li><li><a href="/projects/dsgame/reflection">Reflection</a></li><li><a href="/projects/dsgame/devblog1">Devblog 1 - 09/24/2017</a></li><li><a href="/projects/dsgame/devblog2">Devblog 2 - 10/01/2017</a></li><li><a href="/projects/dsgame/devblog3">Devblog 3 - 10/08/2017</a></li><li><a href="/projects/dsgame/devblog4">Devblog 4 - 11/05/2017</a></li><li><a href="/projects/dsgame/downloads">Downloads</a></li></div></ul></div><div class="markdown-body"><h2 id="battleblocksasummary">Battle Blocks - A Summary</h2>
+<p>The term has ended, and this is my final recap of what I've worked on. I plan to continue work on this project going forward, fixing the few minor bugs that remain and adding in a ton of new content. I'll try to document this work as best I can in devblogs in the future.</p>
+<h3 id="tableofcontents">Table of Contents</h3>
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#summ_networking">Networking</a></li>
+<li><a href="#summ_unity">The Unity End</a></li>
+<li><a href="#summ_shooting">Shooting</a><ul>
+<li><a href="#summ_collision">Collision</a></li></ul></li>
+<li><a href="#summ_artdesign">Art & Design</a></li>
+<li><a href="#summ_map">Map</a></li>
+<li><a href="#summ_music">Music</a></li>
+</ul>
+<h3 id="videodemo">Video Demo</h3>
+<p>This video shows one round of the game playing out, where the enemy wins the round.</p>
+<video autoplay loop>
+<source src='/projects/dsgame/video/FinalDemo1.mp4'>
+</video>
+<p><a name='summary'></a></p>
+<h3 id="summary">Summary</h3>
+<p>Battle Blocks is a melding of the traditional turn-based style of board and card games with the modern shooter video game genre.</p>
+<p>Each player is given 20 seconds to play their turn, where they control their character just like a regular game and each of their movements are recorded, but neither player can see what the other player is doing. After 20 seconds, or once both players have voluntarily ended their turns, both characters' turns are played back simultaneously for both of them.</p>
+<p>This creates a very interesting dynamic of having to predict your opponent's thoughts, moves and positions. When played in a LAN environment where both players are actually in a room together, it makes for really cool psychological gameplay.</p>
+<p><a name='summ_networking'></a></p>
+<h3 id="networking">Networking</h3>
+<p>Having dealt with both uNet and Photon in the past, I decided that Unity's standard networking solutions were simply unecessary for my game. I have no need for latency-free real-time multiplayer in a turn-based game, and I decided that instead of trying to adapt these generic, complex networking solutions to my unique, simple game, I'd be better off simply writing my own networking solution.</p>
+<p>I chose <a href="https://nodejs.org">nodejs</a> and <a href="https://socket.io">socket.io</a> for their ease of use and also because I'm familiar with both and have used them in the past. I use the <a href="https://assetstore.unity3d.com/en/#!/content/21721">Socket.IO for Unity</a> plugin to communicate between the Unity client and my node.js server.</p>
+<h5 id="networkingchallenges">Networking Challenges</h5>
+<p>Node.js and Socket.IO use JavaScript, while Unity uses C#. JavaScript is a dynamic language, while C# is a static language, this means that C# is much more structured and strict  than JavaScript, while JavaScript lets you get away with a lot more. In JavaScript, I can write a function that accepts <em>a variable</em> as an argument, while in C#, the argument must be an <em>int</em>, <em>string</em>, <em>bool</em>, etc. Because of this difference in languages, there's a lot of decoding to be done on the Unity end. Luckily, Unity does have built-in JSON support, so that helps bridge the gap somewhat and simplify the issue.</p>
+<p>The biggest networking hurdle that I had to deal with was one that I've seen a few complaints about on the internet, but I actually couldn't find a single solution. I did, however, manage to figure one out myself.</p>
+<p>The issue was extremely weird and circumstantial. Some socket.io messages from the server to the client caused the client to disconnect and continue rapidly reconnecting and disconnecting until either the server or client was closed. After looking through each socket.io message being sent, I isolated that messages sending JS objects were fine, but messages that sent individual variables, like strings or ints, outside of an object, crashed the Unity end. This was a very simple fix once I discovered what the problem was, just changing <code>var myVar = 5</code> to <code>var myVar = {x:5}</code>.</p>
+<p>In a broader sense, I would say that challenges stemming from the multiplayer nature of the game were by far the most time-consuming and frustrating aspects of this project. Having to build and launch multiple instances of the game each time I needed to test some minute change became extremely frustrating.</p>
+<p>The first time I tested my game between two computers, it broke spectacularly. Strange issues from different resolution screens, and especially different aspect ratio screens, made UI creation and fullscreen settings quite difficult, while random and unexplained bugs on other computers that I simply couldn't replicate on my own machine became incredibly frustrating.</p>
+<p><a name='summ_unity'></a></p>
+<h3 id="managerssingletonsandgameobjectstheunityend">Managers, Singletons and GameObjects: The Unity End</h3>
+<p>Unity works on a basis of scenes, GameObjects and scripts.</p>
+<h5 id="gameobjects">GameObjects</h5>
+<p>Unity is based around GameObjects. GameObjects can take the form of UI elements, sprites, empties, lights, cameras and shapes.</p>
+<p>GameObjects can have attached scripts, which tell the object what to do and when to do it - these are where most of the work goes.</p>
+<h5 id="scenes">Scenes</h5>
+<p>A Scene is a loadable portion of the game that's almost entirely isolated on its own; my game consists of 3 scenes:</p>
+<ul>
+<li>Main Menu</li>
+<li>Lobby</li>
+<li>Game</li>
+</ul>
+<h5 id="managers">Managers</h5>
+<p>To organize everything in my game, I developed a system of "Managers" - GameObjects that control the scene and hold important values that many GameObjects need to access. My game has a Manager for each scene, an overall Manager and a NetworkManager.</p>
+<p>The Manager and NetworkManager are something called singletons. This means that only one can exist at a time, it isn't destroyed when a new scene is loaded, and it is accessible universally by every script.</p>
+<p>Manager handles things like the Options menu, which is unified throughout every scene; music, which loops consistently and continually throughout the game, and handles the loading and checking of scenes.</p>
+<p><a name='summ_shooting'></a></p>
+<h3 id="shooting">Shooting</h3>
+<h5 id="local">Local</h5>
+<p>In Unity, hitting the spacebar instantiates a 'Projectile' GameObject - just a purple square that moves forward when you tell it to (<em>Surprise: we tell it to</em>). It's fired with a velocity of (10<em>x</em> , 0), the x being either 1 or -1 depending on where the player is facing.</p>
+<p>A 'Shot' C# object is also created to record the properties of the shot - this is later sent to the server as part of the turn. The 'Shot' object holds values like what frame the shot was fired on, its initial speed (10<em>x</em> , 0) and its type (if I choose to put in different types in the future). The necessity for the 'Shot' object is elaborated on in the next section:</p>
+<h5 id="networking-1">Networking</h5>
+<p>This is where things get tricky. Before this week, the way turns were networked was simply that the player's movements were recorded into an array of Vector2's ([x,y]) and that array was sent to the enemy player when the turns were played.</p>
+<p>Initially, I thought to approach shooting the same way, and actually got pretty far with my plan before realizing its glaring problems. I created a 'TurnFrame' object that holds two Vector2 arrays - one for the player and one for the player's shot. This method has a multitude of flaws, like lots of unnecessary data and a lack of versatility in the future.</p>
+<p>So, I thought, if projectiles behave the exact same way on both clients, don't I just need to send the frame that the player fired along with the original turn Vector2 array, and then when the replay of the turn reaches that frame it fires? This is a big improvement, but there are two issues in that the projectile doesn't know which direction to go (the enemy player object on the client-side is just a red box that gets moved according to the Vector2 array - it has no properties so we don't know where it's facing).</p>
+<p>So I settled for a compromise between the two - for now, the 'Turn' object that is sent to the server has two parts: a Vector2 array for the players positions, and the 'Shot' C# object.</p>
+<p><a name='summ_collision'></a></p>
+<h4 id="collision">Collision</h4>
+<p>Collision is actually one of the main reasons I chose to go with a well-developed engine like Unity instead of a more from-scratch approach. Collision can be incredibly easy or remarkably complicated, depending on how efficient and effective you want it to be. Here's an example of a really simple collision detection check between two rectangles:</p>
+<pre><code>if (rect1.x &lt; rect2.x + rect2.width  &amp;&amp;
+    rect1.x + rect1.width &gt; rect2.x  &amp;&amp;
+    rect1.y &lt; rect2.y + rect2.height &amp;&amp;
+    rect1.height + rect1.y &gt; rect2.y) {
+    //collision detected
+}
+</code></pre>
+<p>While this works just fine, it's very inefficient, since the function is being run <em>every single frame</em> regardless of any other factors. Even if the two objects are on the opposite side of the screen, we're still checking every frame whether they're colliding, which is unnecessary and inefficient. Unity's collision is developed and advanced to an excellent point of efficiency and effectiveness.</p>
+<h5 id="challenges">Challenges</h5>
+<p>One challenge with using Unity's collision is that I haven't used any of Unity's other physics mechanics. Player movement and physics are handled by the custom script discussed in <a href="devblog1">devblog 1</a>. Unity's collision, however, is made to work with something called a RigidBody, a component of a GameObject that handles physics. This created some weird issues when I tried to use a collider without a RigidBody.</p>
+<p>After playing with a test project I made in Unity for a while, I figured out an effective and simple solution that had little effect on my game's other mechanics. Adding a RigidBody only to the Projectile and then using Unity's <a href="https://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html">Trigger</a> mechanics instead of its traditional collision mechanics, I could make the projectile the only RigidBody. I then set the Projectile's RigidBody type to <em>kinematic</em>, telling it to sit still and not try any physics stuff.</p>
+<p><a name='summ_artdesign'></a></p>
+<h3 id="artdesign">Art &amp; Design</h3>
+<p>First things first: starting the artwork in the last week was a <em>big</em> mistake. Luckily, I'm really happy with the results. The first thing I did was open up Adobe Illustrator and did my best to make some characters and terrain:</p>
+<p>|<img src="/projects/dsgame/img/BluePlayer-determined.png" alt="" />| <img src="/projects/dsgame/img/BluePlayer-worried.png" alt="" />    | <img src="/projects/dsgame/img/BluePlayer-dead.png" alt="" /> |
+|:---------------------------------:|:---------------------------------:|:-----------------------------:|
+|<img src="/projects/dsgame/img/RedPlayer-determined.png" alt="" />    | <img src="/projects/dsgame/img/RedPlayer-worried.png" alt="" />   | <img src="/projects/dsgame/img/RedPlayer-dead.png" alt="" />  |
+|<img src="/projects/dsgame/img/grass-1.png" alt="" />              | <img src="/projects/dsgame/img/grass-2.png" alt="" />             | <img src="/projects/dsgame/img/grass-3.png" alt="" />         |
+|<img src="/projects/dsgame/img/dirt-1.png" alt="" />                  | <img src="/projects/dsgame/img/dirt-2.png" alt="" />              | <img src="/projects/dsgame/img/dirt-3.png" alt="" />          |</p>
+<h4 id="triangulation">Triangulation</h4>
+<p>I wasn't super happy with the terrain, and had no idea what to do for a background - so I turned to my favorite art style: low-poly triangulation. I found a few online resources for automatic triangulation like <a href="https://qrohlf.com/trianglify/#gettingstarted">Trianglify Generator</a>, <a href="https://www.halftonepro.com">Halftone Pro</a> and <a href="dmesh.thedofl.com">DMesh</a>, my favorite for its versatility.</p>
+<p>So, using these tools, I was able to turn this:</p>
+<p><img src="/projects/dsgame/img/bgpre.png" alt="" /></p>
+<p>into this:</p>
+<p><img src="/projects/dsgame/img/bg.png" alt="" /></p>
+<p>This kind of processing allowed me to really easily vary my sprites. I followed suit with each of my terrain sprites:</p>
+<p><img src="/projects/dsgame/img/lowpoly/grass1.png" alt="" /> | <img src="/projects/dsgame/img/lowpoly/grass2.png" alt="" /> | <img src="/projects/dsgame/img/lowpoly/grass3.png" alt="" />
+:---------------------------:|:----------------------------:|:----------------------------:
+<img src="/projects/dsgame/img/lowpoly/stone1.png" alt="" /> | <img src="/projects/dsgame/img/lowpoly/stone2.png" alt="" /> | <img src="/projects/dsgame/img/lowpoly/stone3.png" alt="" />
+<img src="/projects/dsgame/img/lowpoly/dirt1.png" alt="" />  | <img src="/projects/dsgame/img/lowpoly/dirt2.png" alt="" />  | <img src="/projects/dsgame/img/lowpoly/dirt3.png" alt="" /></p>
+<p>Ultimately, this triangulation made for a really cool, unified style for my game:</p>
+<p><img src="/projects/dsgame/img/overall.png" alt="" /></p>
+<p>I also made simple gradient triangulations for the home screen and lobby backgrounds:</p>
+<p><img src="/projects/dsgame/img/menubg.png" alt="" /></p>
+<p><img src="/projects/dsgame/img/lobbybg.png" alt="" /></p>
+<p>Overall, I'm incredibly happy with the way the artwork turned out. I've never really worked on an independent graphic design project, and I've always struggled artistically, but this project allowed me to work with a very simple art-style and still make something that I'm genuinely very proud of.</p>
+<p><a name='summ_map'></a></p>
+<h3 id="map">Map</h3>
+<p>One of my favorite scripts, partially because its functionality is genuinely really cool and partly because it was the only script that actually worked properly on my first try, is my map generation script.</p>
+<p>When I started implementing my artwork into my game, I realized that materials are really complicated in Unity and designed to work with 3D games. It's sprites that are designed for 2D. So, after porting everything else in my game over to a Sprite-system, I needed to make individual GameObjects for every square sprite in my terrain. The easiest way to do this was using a script that allowed me to write out my map in a text file, and then have it generate the map on being loaded. This saved me from having to drag and drop individual blocks into place and calculate their positions to line up, and also made map creation and customization an absolute breeze. Since it's a relatively short and reader-friendly script, I'll just show it here:</p>
+<pre><code>public List&lt;TextAsset&gt; maps;
+public int map = 0;
+public GameObject grassPrefab;
+public GameObject dirtPrefab;
+public GameObject stonePrefab;
+public GameObject tiltedDirtPrefab;
+public GameObject tiltedStonePrefab;
+public List&lt;Vector2&gt; spawnPoints;
+
+public int colNo = 51;
+public int rowNo = 28;
+
+void Start()
+{
+    string[] rows = maps[map].text.Split('\n');
+    if (rows.Length != rowNo)
+    {
+        Debug.LogError("Map Corrupted!");
+        return;
+    }
+    for (int r = 0; r &lt; rowNo; r++)
+    {
+        string[] row = rows[r].Split(' ');
+        for (int c = 0; c &lt; colNo; c++)
+        {
+            string item = row[c];
+            Vector2 coords = new Vector2(c - (colNo / 2), (rowNo-r) - (rowNo / 2));
+            switch (item)
+            {
+                case "1":
+                    PlaceTile(grassPrefab, coords);
+                    break;
+                case "2":
+                    PlaceTile(dirtPrefab, coords);
+                    break;
+                case "3":
+                    PlaceTile(stonePrefab, coords);
+                    break;
+                case "&gt;":
+                    PlaceTiltedTile(tiltedDirtPrefab, coords, 1,1);
+                    break;
+                case "&lt;":
+                    PlaceTiltedTile(tiltedDirtPrefab, coords, -1,1);
+                    break;
+                case "[":
+                    PlaceTiltedTile(tiltedStonePrefab, coords, -1, -1);
+                    break;
+                case "]":
+                    PlaceTiltedTile(tiltedStonePrefab, coords, 1, -1);
+                    break;
+                case "8":
+                    spawnPoints.Add(coords);
+                    break;
+                case "9":
+                    spawnPoints.Add(coords);
+                    break;
+            }
+        }
+    }
+    if (spawnPoints.Count == 2)
+    {
+        Manager.Instance.gameManager.SetSpawnpoints(spawnPoints.ToArray());
+    }
+}
+
+public GameObject PlaceTile(GameObject prefab, Vector2 loc)
+{
+    GameObject tile = Instantiate(prefab, gameObject.transform);
+    tile.transform.position = loc;
+    return tile;
+}
+
+public void PlaceTiltedTile(GameObject prefab, Vector2 loc, float xS, float yS)
+{
+    GameObject tile = PlaceTile(prefab, loc);
+    tile.transform.localScale = new Vector3(xS, yS, tile.transform.localScale.z);
+}
+</code></pre>
+<p>And here's what a map.txt file looks like:</p>
+<pre><code>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . &lt; 1 1 &gt; . . . . . . . . . &lt; 1 1 &gt; . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . &lt; 2 2 2 2 1 1 1 1 1 1 1 1 1 2 2 2 2 &gt; . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . . . . . . . . . .
+. . 1 1 1 &gt; . . . . . . . . . . . . [ 3 3 3 3 3 3 3 3 3 3 3 3 3 ] . . . . . . . . . . . . &lt; 1 1 1 . .
+. . 2 2 2 2 1 1 &gt; . . . . . . . . . . . . [ 3 3 3 3 3 3 3 ] . . . . . . . . . . . . &lt; 1 1 2 2 2 2 . .
+. . [ 3 3 3 3 2 2 &gt; . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . &lt; 2 2 3 3 3 3 ] . .
+. . . . [ 3 3 3 3 ] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ 3 3 3 3 ] . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . 1 1 1 1 1 1 1 1 . . . . . . . . . . . 1 1 1 1 1 1 1 1 . . . . . . . . . . . .
+. . . . . . . . . . . . [ 3 3 3 3 3 3 ] . . . . . . . . . . . [ 3 3 3 3 3 3 ] . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . 1 8 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9 1 . . .
+. . . 2 1 1 1 1 1 1 1 1 &gt; . . . . . . . . . . . . . . . . . . . . . . . . . &lt; 1 1 1 1 1 1 1 1 2 . . .
+. . . [ 3 3 2 2 2 2 2 2 2 1 1 1 1 &gt; . . . . . . . . . . . . . . . &lt; 1 1 1 1 2 2 2 2 2 2 2 3 3 ] . . .
+. . . . [ 3 3 3 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 2 2 2 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 ] . . . .
+. . . . . . [ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 ] . . . . . .
+. . . . . . . . . [ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 ] . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</code></pre>
+<h4 id="spritevariance">Sprite variance</h4>
+<p>The way I put my very varied sprites to good use was with a simple sprite randomizer script attached to the prefabs that were instantiated by the MapMaker script above. When each GameObject is instantiated, it chooses a random sprite from the array given to it.</p>
+<pre><code>public List&lt;Sprite&gt; sprites;
+public int index;
+void Start () {
+    index = (int)(Random.value * (sprites.Count));
+    GetComponent&lt;SpriteRenderer&gt;().sprite = sprites[index];
+}
+</code></pre>
+<p><a name='summ_music'></a></p>
+<h3 id="music">Music</h3>
+<p>I'm going to conclude with music because it represents the only failure of my project. While the final product does incorporate a really cool music loop, it was mostly worked on by my friend, Ben Dreier. When I sat down with <a href="https://www.distractionware.com">Bosca Ceoil</a>, a simple music making software, it didn't take long to realize that making music is <em>hard</em>. Having absolutely no background in music whatsoever and with time running out, I asked my friend Ben for help with making the music; he ended up doing a bulk of the work on the music, and I can't really take credit for it.</p>
+<p>Here's a sample of the background loop of music for the game:</p>
+<audio controls loop>
+  <source src="/projects/dsgame/music/music.wav" type="audio/wav">
+Your browser does not support the audio element.
+</audio>
+<h3 id="reflectionreflection"><a href="reflection">Reflection</a></h3>
+<p>^ Click that link to see my concluding reflection on my Directed Study.</p></div></div><footer class="bg-2" id="footer"><span>Copyright © <span id="cDate"></span> Mitchell Jones</span></footer><script>function scrollTo(id, time) {
+	$('html, body').animate({
+		scrollTop: $('#'+id).offset().top
+	}, time);
+}
+var isHome = document.title == 'Mitchell Jones';
+/* Premade functions so we don't have to check isHome on every click. */
+function scr() {
+	scrollTo($(this).attr('to'), 1000);
+}
+function lnk() {
+	window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
+}
+if (isHome)
+	$('.jlink').click(scr);
+else
+	$('.jlink').click(lnk);
+/* Look for scroll parameter in URL and scroll */
+var params = new URLSearchParams(window.location.search);
+if (params.has('scroll'))
+	scrollTo(params.get('scroll'),1000);
+/* Set footer copyright year */
+$('#cDate').html(new Date().getFullYear());</script></body></html>

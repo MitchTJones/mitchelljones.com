@@ -1,0 +1,137 @@
+class Blob
+{
+  float x;
+  float y;
+  float size;
+  float wander_theta;
+  float wander_radius;
+  color c;
+  
+  // bigger = more edgier, hectic
+  float max_wander_offset = 0.2;
+  // bigger = faster turns
+  float max_wander_radius = 2;
+ 
+  Blob(float _x, float _y, float _size, color _c) {
+    x = _x;
+    y = _y;
+    size = _size;
+    c = _c;
+   
+    wander_theta = 10*random(TWO_PI);
+    wander_radius = 10*random(max_wander_radius);
+ }
+ 
+  void move() {
+    float wander_offset = random(-max_wander_offset, max_wander_offset);
+    wander_theta += wander_offset;
+   
+    x += cos(wander_theta);
+    y += sin(wander_theta);
+    
+    if (x < 1) {
+      x = width-1;
+    }
+    if (y < 1) {
+      y = height-1;
+    }
+    if (x > width-1) {
+      x = 1;
+    }
+    if (y > height-1) {
+      y = 1;
+    }
+  }
+  
+  boolean checkCollision(float _x, float _y, float _size) {
+    return dist(x,y,_x,_y) < (size/2)+(_size/2);
+  }
+  
+  void respawn(float _x, float _y, float _size) {
+    x = _x;
+    y = _y;
+    size = _size;
+  }
+}
+
+Blob[] blobs = new Blob[30];
+Blob[] food = new Blob[50];
+
+int winner;
+float countdown = 5;
+
+void setup() {
+  ellipseMode(CENTER);
+  rectMode(CENTER);
+  textAlign(CENTER);
+  size(800, 400);
+  background(100);
+  fill(200);
+  noStroke();
+  frameRate(60);
+ 
+  for (int i = 0; i < blobs.length; i++) {
+    blobs[i] = new Blob(random(width), random(height), 15, (255));
+  }
+  for (int i = 0; i < food.length; i++) {
+    food[i] = new Blob(random(width), random(height), 5, (0));
+  }
+  winner = 0;
+}
+
+void draw() {
+  background(50);
+  for (int i = 0; i < blobs.length; i++) {
+    if (blobs[i].size > blobs[winner].size) {
+      winner = i;
+    }
+  }
+  if (blobs[winner].size > width) {
+    if (countdown < 0) {
+      reset();
+    }
+    text("Blob " + winner + " has won!", width/2, height/2-10);
+    text("Resetting in " + round(countdown), width/2, height/2+10);
+    countdown -= 0.01666666666666666;
+  } else {
+    for (int i = 0; i < food.length; i++) {
+      fill(food[i].c);
+      ellipse(food[i].x, food[i].y, food[i].size, food[i].size);
+    }
+    for (int i = 0; i < blobs.length; i++) {
+      for (int _i=0; _i < blobs.length; _i++) {
+        if (i != _i) {
+          if (blobs[i].checkCollision(blobs[_i].x, blobs[_i].y, blobs[_i].size)) {
+            if (blobs[i].size > blobs[_i].size) {
+              blobs[i].size += blobs[_i].size/4;
+              blobs[_i].respawn(random(width), random(height), 15);
+            } else if (blobs[_i].size > blobs[i].size) {
+              blobs[_i].size += blobs[i].size;
+              blobs[i].respawn(random(width), random(height), 15);
+            }
+          }
+        }
+      }
+      for (int _i=0; _i < food.length; _i++) {
+        if (blobs[i].checkCollision(food[_i].x, food[_i].y, food[_i].size)) {
+          blobs[i].size += food[_i].size/100;
+          food[_i].respawn(random(width), random(height), 5);
+        }
+      }
+      blobs[i].move();
+      fill(blobs[i].c);
+      ellipse(blobs[i].x, blobs[i].y, blobs[i].size, blobs[i].size);
+      if (blobs[i].size > 500) {
+      }
+    }
+  }
+}
+
+void reset() {
+  countdown = 5;
+  setup();
+}
+/* Bibliography
+Movement Mechanics:
+https://processing.org/discourse/beta/num_1238874012.html
+*/

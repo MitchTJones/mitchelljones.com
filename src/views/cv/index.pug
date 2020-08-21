@@ -1,0 +1,216 @@
+extends ../includes/layout.pug
+
+block head
+	- var statement = 'I’m a student, coder, and maker with a passion for project-based learning and teaching. I’m most interested in bridging the boundaries between computer science and other disciplines, and making technology more accessible for everyone.';
+	title Mitchell Jones' CV
+	link(rel='stylesheet', href='/css/cv.min.css')
+	meta(name='description', content=statement)
+block content
+	.page
+		.inner
+			.grid
+				.cell#title
+					h1 Mitchell Jones
+					p.justify #{statement}
+				.cell.right#contact
+					p
+						a(href='https://www.mitchelljones.com') www.mitchelljones.com
+					p
+						a(href='mailto:mitch@mitchelljones.com') mitch@mitchelljones.com
+					p
+						a(href='https://www.linkedin.com/in/mitchelltjones') linkedin.com/in/mitchelltjones
+					p
+						a(href='https://www.github.com/MitchTJones') github.com/mitchtjones
+					p
+						b (702) 521-8842
+				.cell#main
+					h2 Experience
+					h2.subheading PROFESSIONAL
+					.section
+						div
+							h3 #[b LifeBac], Las Vegas, NV, United States
+							h3 #[i Software Engineer / Content / Founding Member]
+						div
+							p JUNE 2018 - PRESENT
+						div
+							p.justify #[a(href='https://www.lifebac.com') LifeBac] is a science-based online addiction treatment clinic for excessive drinkers that my father and I started last summer. From concept to research to funding to launch, we've spent just over a year building the current paid-public-beta and collecting more than $700,000 in investor funds. I wrote our business plan, built an online pitch deck, built #[a(href='https://www.lifebac.com') lifebac.com], and wrote most of the company's investor-facing, consumer-facing, and doctor-facing content including regular investor update letters, various custom webpages, and the script for a video to be produced by #[a(href='https://kurzgesagt.org/') Kurzgesagt]. I continue to work full-time over my summer and winter breaks and part-time throughout the rest of the year on LifeBac.
+					.section
+						div
+							h3 #[b Freelance], Las Vegas, NV, United States
+							h3 #[i Web &amp; Graphic Designer/Developer]
+						div
+							p JULY 2018 - PRESENT
+						div
+							p.justify I have two clients for whom I freelance web design, web development, content creation, and graphic design. I meet with clients who have little to no experience with web design, and turn anything from a few bullet points on a notepad to hand-drawn site concepts into functional, fast, and modern online interfaces.
+					h2.subheading ACADEMIC
+					.section
+						div
+							h3 #[b Institute of Neuroinformatics], Zürich, Switzerland
+							h3 #[i Research Assistant]
+						div
+							p MARCH 2018
+						div
+							p.justify I worked with PhD students at ETH Zürich and the University of Zürich’s #[a(href='https://www.ini.uzh.ch/en.html') Institute of Neuroinformatics] on various small projects in neuromorphic computing and machine vision. Programming in Python, JavaScript, and some C++. I was mentored by #[a(href='http://www.jmartel.net/') Julien Martel], #[a(href='https://www.ini.uzh.ch/~tneary/') Turlough Neary], and #[a(href='https://www.ini.uzh.ch/people/cook') Professor Matt Cook].
+					.section
+						div
+							h3 #[b Sydney Institute for Astronomy], Sydney, Australia
+							h3 #[i Research Assistant]
+						div
+							p MARCH 2017
+						div
+							p.justify I worked with PhD students at #[a(href='https://sydney.edu.au/science/our-research/research-centres/sydney-institute-for-astronomy.html') Sydney University’s Institute for Astronomy] on creating a Python application that analyzes and compares different processing pipelines for Kepler K2 data. I was mentored by #[a(href='https://sydney.edu.au/science/people/tim.bedding.php') Professor Tim Bedding].
+
+					h2 Education
+					.section
+						div
+							h3 #[b University of Rochester], Rochester, NY, USA
+							h3.mb-1 #[i #[b Bachelor of Science] in Computer Science,]
+							h3 #[i Minor in Political Science]
+						div
+							p 2018 - 2022
+						div
+							h4 By the Numbers
+							.grid.g2
+								p - #[b GPA:] 3.83
+							h4 Programs
+							.indent
+								b - #[a(href='https://www.rochester.edu/college/rccl/leadership/medallion/') The Medallion Program]
+								p The Medallion Program aims to educate student leaders by providing opportunities for intentional learning, self-reflection, and skill development. Students enrolled in the Medallion Program gain a strong sense of self-awareness, work effectively with others, and become civically and socially engaged. I joined the Medallion Program to hone my leadership skills and meet like-minded student peers.
+							h4 Extracurricular
+							.indent
+								b - #[a(href='https://www.rochester.edu/college/ecm/') Events and Classroom Management (ECM)] Work-Study
+								p As a trained ECM Technician, I setup, take-down, run, and troubleshoot all kinds of campus events like academic conferences, student performances, and Meliora Weekend festivities.
+							.indent
+								b - #[a(href='https://www.rochester.edu/debate/about/index.html') UR Debate Union (URDU)] - Member
+					.section
+						div
+							h3 #[b Choate Rosemary Hall], Wallingford, CT, USA
+						div
+							p 2014 - 2018
+						div
+							h4 By the Numbers
+							.grid.g2
+								p - #[b GPA:] 3.7 / 4.1
+								p - #[b ACT:] 34
+							h4 AP (or higher) level classes
+							.grid.g2
+								p - #[b AP Computer Science:] A
+								p - #[b AP Calculus:] A
+								p - #[b AP U.S. History:] A-
+								p - #[b Honors Interactive Media, DS:] A
+								p - #[b Honors French 651:] A-
+							h4 Extracurricular
+							.indent
+								b - Choate Debate Team - Meeting Leader
+								p I lead weekly debate meetings, training novice debaters, and competing in advanced tournaments on weekends.
+							.indent
+								b - Rothberg Catalyzer - Finalist
+								p My team and I were chosen to advance to the Rothberg Catalyzer final at Brown to compete against teams from Brown, Carnegie Mellon, Yale, and U Penn.
+							.indent
+								b - Choate Programming Union - Member
+							.indent
+								b - Psychology Club - Member
+							.indent
+								b - Athletics: #[i JV Ultimate, Thirds Tennis]
+					h2 Selected Projects
+					h3 #[b mitchelljones.com] — #[i Gallery] #[a(href='https://github.com/MitchTJones/mitchelljones.com') GitHub] #[a(href='https://www.mitchelljones.com') Homepage]
+					p.justify My personal website, which houses a gallery of some of my favorite major and minor projects. #[a(href='https://www.mitchelljones.com') www.mitchelljones.com].
+					.margin
+						h3 #[b Rothberg Catalyzer] — #[i Hackathon]
+						p.justify With a project centered around the health, safety, and comfort of children during disaster relief, I led my 4-person team to win the Choate Rothberg Catalyzer and advance to compete against teams from Yale, Brown, Carnegie Mellon, and the University of Pennsylvania. Our project, taking the form of a children’s toy, incorporates biomedical data sensors to assess and aid children and adolescents affected by major disasters.
+					.margin
+						h3 #[b Battle Blocks] — #[i Desktop App] #[a(href='https://github.com/MitchTJones/Battle-Blocks') GitHub] #[a(href='/projects/dsgame/intro') Homepage]
+						p.justify The product of a term-long Directed Study in interactive media and game design, Battle Blocks is a video game that combines the eye-catching art style and exciting gameplay of a traditional platformer-shooter with turn-based strategy unique to the genre. I built the game from scratch in the Unity engine, designing the user experience and game mechanics, coding both the client and server systems, and drawing and animating all of the visuals.
+					.margin
+						h3 #[b MeetUp] — #[i Web App] #[a(href='https://meetup.mitchelljones.com') Homepage]
+						p.justify MeetUp is an online application that enables a group of people to coordinate the scheduling of a shared event. Once users set their own persistent schedule of available vs. occupied timeslots, MeetUp propagates that information to every associated event, allowing everybody to seamlessly schedule a time that works for them all. Similar in principle to When2Meet, MeetUp makes significant improvements with an updated, modern, mobile-first UI; user accounts with pre-set weekly schedules; and no advertising, tracking, or financial profit of any kind.
+					.margin
+						h3 #[b Locke Pocket] — #[i Web App] #[a(href='https://github.com/MitchTJones/ERC-20-Token-Wallet') GitHub] #[a(href='https://www.lockepocket.com/') Homepage]
+						p.justify The official web wallet for the cryptocurrency #[a(href='https://www.thelockeproject.com') Locke]. Locke Pocket is a secure, easy-to-use Ethereum token wallet. Alongside Locke Pocket, I built a barebones, open-source #[a(href='https://github.com/MitchTJones/ERC-20-Token-Wallet') ERC-20 web wallet template] for anyone who'd like to make their own secure custom Ethereum token web wallet. #[a(href='https://www.lockepocket.com') www.lockepocket.com].
+					h2 Volunteering
+					.margin
+						h3 #[b FUSION 2019 Volunteer: Door Manager] — #[i #[a(style='float:none;margin-left:0px' href='https://www.afwerx.af.mil/') AFWERX]]
+						p.justify #[a(href='https://www.afwerxfusion.com') FUSION] is AFWERX's flagship yearly two-day event hosted jointly by the United States Air Force and AFWERX. 120 teams showcased their technological solutions to Air Force leadership and other military executives. As a volunteer, I supervised the entrance to the main showfloor and provided general assistance wherever necessary.
+					.margin
+						h3 #[b Life Enrichment Volunteer] — #[i Aegis Living]
+						p.justify I worked with Life Enrichment Director Stephen McClelland to care for and entertain patients, as well as helping to clean and maintain the premises.
+				.cell#side
+					h2 Skills
+					.grid.g3
+						h4 #[u Programming]
+						h5 Languages
+						p - JavaScript
+						p.right Advanced
+						p - Java
+						p.right Advanced
+						p - HTML/CSS
+						p.right Advanced
+						p - C
+						p.right Intermediate
+						p - Python
+						p.right Intermediate
+						p - C#
+						p.right Intermediate
+						p - Lisp
+						p.right Novice
+						p - PHP
+						p.right Novice
+						p - Solidity
+						p.right Novice
+						p - C++
+						p.right Novice
+						h5 Frameworks
+						p - jQuery
+						p.right Advanced
+						p - Django
+						p.right Intermediate
+						p - Bootstrap
+						p.right Intermediate
+						p - React.js
+						p.right Novice
+						h5 Platforms
+						p - Node.js
+						p.right Advanced
+						p - Unity
+						p.right Intermediate
+						br
+						h4 #[u Software]
+						p - Photoshop
+						p.right Advanced
+						p - MS Office
+						p.right Advanced
+						p - Google Drive
+						p.right Advanced
+						p - Premiere Pro
+						p.right Intermediate
+						p - Illustrator
+						p.right Novice
+						p - After Effects
+						p.right Novice
+						p - Blender
+						p.right Novice
+					h2 Awards
+					p #[b Rochester Dean's Scholarship] for academic achievement and unique contributions to student life.
+					p 2018-2022
+					br
+					p #[b University of Rochester Dean's List]
+					p 2018-2020
+					br
+					p #[b Enhanced Research and Innovation Grant ($4,500)] awarded to Rochester students for motivation, creativity, and strong potential for success.
+					p 2018
+					br
+					p #[b Paul Mellon Scholarship] for academic excellence and drive in the study of math, computer science, and/or science.
+					p 2014-2018
+					br
+					p #[b Choate Rosemary Hall Award for Excellence in Advanced Study of Computer Science]; the highest honor in Computer Science.
+					p 2018
+					br
+					p #[b Deans' List for Choate Students Who Excel in All Subjects]
+					p 2016-2018
+					h2 Languages
+					.grid.g3
+						p English
+						p.right Native
+						p French
+						p.right Near-Fluent
+	script(src='/js/cvmobile.min.js')

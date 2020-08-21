@@ -1,0 +1,7 @@
+{
+	"version": "0.2",
+	"launcher_version": "0.1",
+	"gamefile": "BattleBlocks-latest-Windows.zip",
+	"serverfile": "BBServer-latest-Windows.zip",
+	"infofile": "battleblocks.md"
+}

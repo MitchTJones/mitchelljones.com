@@ -1,0 +1,200 @@
+<!DOCTYPE html><html class="html"><head><!-- included in every page--><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141771724-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-141771724-1');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- JQuery--><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap CSS--><link rel="stylesheet" href="/css/bootstrap.min.css"><!-- favicons--><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/favicons//favicons/apple-touch-icon-152x152.png"><link rel="icon" type="image/png" href="/favicons/favicon-196x196.png" sizes="196x196"><link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicons/favicon-128.png" sizes="128x128"><meta name="application-name" content=" "><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png"><!-- my stuff--><link rel="stylesheet" href="/css/main.min.css"><script src="/js/functions.min.js"></script><title>Battle Blocks</title><meta name="description" content=""><style type="text/css">@media only screen and (max-width: 770px) {
+	.content {
+		flex-direction:column;
+	}
+	#sidebar {
+		flex-grow:0;
+	}
+}</style></head><body class="body"><header class="noselect" id="header"><nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse main-nav"><ul class="nav navbar-nav flex-grow justify-content-start"><li class="nav-item"><a class="nav-link jlink" id="l-projects" to="projects">Projects</a></li><li class="nav-item"><a class="nav-link jlink" id="l-about" to="about">About</a></li></ul><ul class="nav navbar-nav flex-grow justify-content-center"><li class="nav-item"><a class="nav-link heavy jlink" id="l-home" to="demo"><img src="/img/logos/logo.png"></a></li></ul><ul class="nav navbar-nav flex-grow justify-content-end"><li class="nav-item"><a class="nav-link" id="l-cv" href="/cv">CV</a></li><li class="nav-item"><a class="nav-link jlink" id="l-contact" to="contact">Contact</a></li></ul></nav></header><div class="content"><div class="bg-1" id="sidebar"><ul class="sidebar-nav"><li><h2>Battle Blocks</h2></li><div class="links"><li><a href="/projects/dsgame/intro">Introduction</a></li><li><a href="/projects/dsgame/summary">Battle Blocks - A Summary</a></li><li><a href="/projects/dsgame/reflection">Reflection</a></li><li><a href="/projects/dsgame/devblog1">Devblog 1 - 09/24/2017</a></li><li><a href="/projects/dsgame/devblog2">Devblog 2 - 10/01/2017</a></li><li><a href="/projects/dsgame/devblog3">Devblog 3 - 10/08/2017</a></li><li><a href="/projects/dsgame/devblog4">Devblog 4 - 11/05/2017</a></li><li><a href="/projects/dsgame/downloads">Downloads</a></li></div></ul></div><div class="markdown-body"><h2 id="devblog210012017">Devblog 2 - 10/01/2017</h2>
+<h3 id="networking">Networking</h3>
+<h4 id="functionality">Functionality</h4>
+<p>I spent an exorbitant amount of time working on this project early on in the week and got the basic functionality of the server almost completely finished.
+Here's a demo:</p>
+<video autoplay loop>
+<source src='/projects/dsgame/video/NetworkingDemo1.mp4'>
+</video>
+<p>What you see above is two players connecting to a lobby, both declaring themselves ready and starting a game, then playing out their turns. When both players have finished their turns, their turn is sent to their opponent and both turns are played simultaneously for each client.</p>
+<p>Note that both clients and the server were all running on the same machine, so there is no network latency in this demo.</p>
+<h5 id="challenges">Challenges</h5>
+<p>When I first started on this project, server-authored countdowns were one of the first things I tried to do. Every time I tried to test it, all clients would disconnect from the server for seemingly no reason. I had no idea if this was node kicking them off, Unity disconnecting or something in between. I canned that functionality for a later date - this week was that later date. I reached the point where I realized that something was going to have to be done about this if I was going to have a server-authored time limit for turns.</p>
+<p>After a couple hours of questioning my own sanity, I realized that this issue stemmed from my arch-nemesis throughout this project: JavaScript to C# miscommunication. C# can't handle JavaScript variables, so when I was sending through an int for the time, my Unity end of things just died. I figured out that the only way to send data from node.js to Unity was if it was contained within an object. This was a very simple fix once I discovered what the problem was, just changing <code>var lobbyCountdown = 5</code> to <code>var lobbyCountdown = {t:5}</code>. I'm extremely glad I figured this out early on, as this would have been a very prominent issue throughout the rest of the project.  </p>
+<h4 id="housekeeping">Housekeeping</h4>
+<p><strong>warning:</strong> lots of possibly boring code ahead; if you don't care about code condensing and housekeeping, <a href="#skippoint">skip it</a>, don't worry, I'll understand :'(</p>
+<p>My node server is <em>very</em> messy - let's clean it up a bit.</p>
+<p>First order of business: these extremely repetitive "checking" functions:</p>
+<pre><code>function checkReady() {
+    var ready = true;
+    for (i = 0; i &lt; sockets.length; i++) {
+        if (!sockets[i].ready) {
+            ready = false;
+        }
+    }
+    return gameReady;
+}
+function checkLoaded() {
+    var ready = true;
+    for (i = 0; i &lt; sockets.length; i++) {
+        if (!sockets[i].gameLoaded) {
+            ready = false;
+        }
+    }
+    return ready;
+}
+function checkTurnEnds() {
+    var ready = true;
+    for (i = 0; i &lt; sockets.length; i++) {
+        if (!sockets[i].turnEnded) {
+            ready = false;
+        }
+    }
+    return ready;
+}
+function checkNextTurnRequests() {
+    var ready = true;
+    for (i = 0; i &lt; sockets.length; i++) {
+        if (!sockets[i].nextTurn) {
+            ready = false;
+        }
+    }
+    return ready;
+}
+</code></pre>
+<p>Using the power of JavaScript, we should be able to condense all of these down into a single function that takes the boolean name in the form of a string as an argument:</p>
+<pre><code>function check(bool) {
+    var ready = true;
+    for (i = 0; i &lt; sockets.length; i++) {
+        if (!sockets[i][bool]) {
+            ready = false;
+        }
+    }
+    return ready;
+}
+</code></pre>
+<p>The second aberration of repetitiveness is the handling of all my countdowns; this one will take a bit more work. Here's the original code:</p>
+<pre><code>function loadGame() {
+    lobbyCountdownTimer = setInterval(function() {
+        console.log('   game loads in ' + lobbyCountdown.t);
+        for (i = 0; i &lt; sockets.length; i++) {
+            sockets[i].emit('lobbycountdown', lobbyCountdown);
+        }
+        lobbyCountdown.t--;
+        if (lobbyCountdown.t &lt; 1) {
+            for (i = 0; i &lt; sockets.length; i++) {
+                console.log(sockets[i].number + ': sending gameload information');
+                sockets[i].emit('loadgame');
+            }
+            resetLobbyCountdown();
+        }
+    }, 1000);
+}
+function startGame() {
+    gamestartCountdownTimer = setInterval(function() {
+        console.log('   game starts in ' + gamestartCountdown.t);
+        for (i = 0; i &lt; sockets.length; i++) {
+            sockets[i].emit('gamestartcountdown', gamestartCountdown);
+        }
+        gamestartCountdown.t--;
+        if (gamestartCountdown.t &lt; 1) {
+            for (i = 0; i &lt; sockets.length; i++) {
+                console.log(sockets[i].number + ': starting game');
+                sockets[i].emit('startturn');
+            }
+            console.log('   Game On!');
+            resetGameStartCountdown();
+        }
+    }, 1000);
+}
+function startTurn() {
+    turnCountdownTimer = setInterval(function() {
+        console.log('   turn has started');
+        for (i = 0; i &lt; sockets.length; i++) {
+            sockets[i].emit('turncountdown', turnCountdown);
+        }
+        turnCountdown.t--;
+        if (turnCountdown.t &lt; 1) {
+            console.log('  turn over!');
+            for (i = 0; i &lt; sockets.length; i++) {
+                sockets[i].emit('turnover');
+            }
+        }
+    });
+}
+function resetLobbyCountdown() {
+    for (i = 0; i &lt; sockets.length; i++) {
+        sockets[i].emit('lobbycountdown-cancel');
+    }
+    clearInterval(lobbyCountdownTimer);
+    lobbyCountdown.t = 5;
+}
+
+function resetGameStartCountdown() {
+    clearInterval(gamestartCountdownTimer);
+    gamestartCountdown.t = 5;
+}
+
+function resetTurnCountdown() {
+    clearInterval(turnCountdownTimer);
+    turnCountdown = 45;
+}
+</code></pre>
+<p>This one was a little bit more complicated but I was effectively able to cram all these functions into these two:</p>
+<pre><code>function setTimer(name, time, message) {
+    var interval = setInterval(function() {
+        console.log('   Timer ' + name + ': ' + time.t);
+        for (i = 0; i &lt; sockets.length; i++) {
+            sockets[i].emit(name + 'countdown', time);
+        }
+        time.t--;
+        if (time.t &lt; 1) {
+            console.log('  Timer ' + name + ': emitting ' + message);
+            for (i = 0; i &lt; sockets.length; i++) {
+                sockets[i].emit(message);
+                resetTimer(time, interval);
+            }
+        }
+    }, 1000);
+    return interval;
+}
+
+function resetTimer(time, interval) {
+    clearInterval(interval);
+    time.t = time.o;
+}
+</code></pre>
+<p><a name='skippoint'></a></p>
+<h3 id="futureplans">Future Plans</h3>
+<p><strong>Projectiles</strong></p>
+<p>My most immediate task is to add projectile shooting - a simple task with a few issues to think about (I'll flesh these out a lot more in my <a href="devblog3">next devblog</a>:</p>
+<ul>
+<li>Controls and Functionality</li>
+<li>Turn Recording</li>
+<li>Rules/Limitations</li>
+</ul>
+<p><strong>Art/Design/UI/Sound/Music</strong></p>
+<p>Lingering in the back of my mind as I lay awake at night is the horror that soon I'll have to start working on <em>gasp</em>… <strong>art</strong>. As I mentioned <a href="devblog1">last devblog</a>, I have no idea where to even start with this and have no meaningful experience or talent of any kind in this area. <strong>But wait! <em>There's More!</strong></em> I completely forgot that music and sound is also incredibly important, so now I have <em>two</em> terrifying challenges ahead of me, I can't wait!</p>
+<p><em>Disclaimer</em>: ^ that wasn't sarcasm; I've been wanting to try to hone my artistic abilities for a while now, I'm actually <em>really</em> excited to get to work on this since up until now I've just been doing code.</p></div></div><footer class="bg-2" id="footer"><span>Copyright © <span id="cDate"></span> Mitchell Jones</span></footer><script>function scrollTo(id, time) {
+	$('html, body').animate({
+		scrollTop: $('#'+id).offset().top
+	}, time);
+}
+var isHome = document.title == 'Mitchell Jones';
+/* Premade functions so we don't have to check isHome on every click. */
+function scr() {
+	scrollTo($(this).attr('to'), 1000);
+}
+function lnk() {
+	window.location.href = 'https://www.mitchelljones.com/?scroll='+$(this).attr('to');
+}
+if (isHome)
+	$('.jlink').click(scr);
+else
+	$('.jlink').click(lnk);
+/* Look for scroll parameter in URL and scroll */
+var params = new URLSearchParams(window.location.search);
+if (params.has('scroll'))
+	scrollTo(params.get('scroll'),1000);
+/* Set footer copyright year */
+$('#cDate').html(new Date().getFullYear());</script></body></html>
