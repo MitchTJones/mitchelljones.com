@@ -3,7 +3,6 @@
 
 To maximize performance, the final site build is a simple static directory hosted on an Amazon AWS EC2 instance with CloudFlare handling DNS and caching. [Gulp](https://github.com/gulpjs/gulp) compiles, bundles, minifies, and purges Pug, Sass, and ES6 JS assets from the `src` directory into HTML, CSS, and plain JavaScript in `public`.
 
-
 ## Technologies Used
 
 - [Gulp](https://github.com/gulpjs/gulp) - Toolkit to automate compiling, bundling, and minifying.
