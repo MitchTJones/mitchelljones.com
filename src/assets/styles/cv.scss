@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa/Comfortaa-Bold.ttf');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa/Comfortaa-Regular.ttf');
+  font-weight: 400;
+  font-display: swap;
+}
 
 .content {
   font-size: 9.5pt;
@@ -30,12 +42,13 @@
 
 h1 {
   font-size: 36pt;
-  font-weight: bolder;
+  font-weight: 400;
+  margin: 0 0 8px 0;
 }
 
 h2 {
   font-size: 9pt;
-  font-weight: bolder;
+  font-weight: 400;
   text-transform: uppercase;
   color: #2079c7;
   margin: 0.25in 0;
@@ -56,7 +69,7 @@ h3 {
 
 h4 {
   font-size: 10pt;
-  font-weight: bolder;
+  font-weight: 400;
   margin-top: .5rem;
   grid-column: 1 / span 2;
 }
@@ -64,7 +77,7 @@ h4 {
 h5 {
   padding-top: .2rem !important;
   font-size: 10pt;
-  font-weight: bolder;
+  font-weight: 400;
   margin: 0;
   grid-column: 1 / span 2;
 }
