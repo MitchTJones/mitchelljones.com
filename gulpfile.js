@@ -35,7 +35,7 @@ const globs = {
     pug: {
         src: [
             paths.src + '/views/**/*.pug',
-            '!' + paths.src + '/views/includes',
+            '!' + paths.src + '/views/includes/**/*',
             '!' + paths.src + '/views/project.pug'
         ],
         dest: paths.dest,
