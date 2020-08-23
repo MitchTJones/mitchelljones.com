@@ -332,12 +332,16 @@ a.t-black {
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 450px) {
   .navbar-nav {
     flex-direction: column !important;
 
     &.justify-content-end {
-      align-items:end;
+      align-items: end;
+    }
+
+    &.justify-content-center {
+      align-items:center;
     }
   }
 
