@@ -59,7 +59,7 @@ const globs = {
             cv: {
                 src: [
                     paths.src + '/assets/styles/main.scss',
-                    paths.src + '/assets/styles/home.scss'
+                    paths.src + '/assets/styles/cv.scss'
                 ],
                 content: paths.dest + '/cv/index.html'
             }
@@ -124,6 +124,7 @@ gulp.task('sass', () => {
     let pages = globs.sass.pages;
     for (let key in pages) {
         let page = pages[key];
+        console.log(page);
         tasks.push(
             gulp.src(page.src)
                 .pipe(sass().on('error', sass.logError))
