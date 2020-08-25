@@ -44,13 +44,28 @@ const globs = {
         local: paths.src + '/assets/project-data.json'
     },
     sass: {
-        src: [
-            paths.src + '/assets/styles/*.scss',
-            paths.src + '/vendor/bootstrap/scss/bootstrap.scss'
-        ],
+        pages: {
+            main: {
+                src: paths.src + '/assets/styles/main.scss',
+                content: paths.dest + '/projects/**/*.html'
+            },
+            home: {
+                src: [
+                    paths.src + '/assets/styles/main.scss',
+                    paths.src + '/assets/styles/home.scss'
+                ],
+                content: paths.dest + '/index.html'
+            },
+            cv: {
+                src: [
+                    paths.src + '/assets/styles/main.scss',
+                    paths.src + '/assets/styles/home.scss'
+                ],
+                content: paths.dest + '/cv/index.html'
+            }
+        },
         dest: paths.dest + '/css',
         watch: paths.src + '/assets/styles/**/*.scss',
-        content: paths.dest + '/**/*.html'
     },
     js: {
         src: paths.src + '/assets/js/**/*.js',
@@ -89,19 +104,40 @@ gulp.task('lint', () => {
 });
 
 // Compile, autoprefix, and minify Sass
+// gulp.task('sass', () => {
+//     return gulp.src(globs.sass.src)
+//         .pipe(sass().on('error', sass.logError))
+//         .pipe(autoprefixer())
+//         .pipe(mincss({compatibility:'ie8'}))
+//         .pipe(purgecss({
+//             content: [globs.sass.content]
+//         }))
+//         .pipe(rename((path) => {
+//             path.extname = ".min.css";
+//         }))
+//         .pipe(gulp.dest(globs.sass.dest))
+//         .pipe(browserSync.stream());
+// });
+
 gulp.task('sass', () => {
-    return gulp.src(globs.sass.src)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer())
-        .pipe(mincss({compatibility:'ie8'}))
-        .pipe(purgecss({
-            content: [globs.sass.content]
-        }))
-        .pipe(rename((path) => {
-            path.extname = ".min.css";
-        }))
-        .pipe(gulp.dest(globs.sass.dest))
-        .pipe(browserSync.stream());
+    let tasks = [];
+    let pages = globs.sass.pages;
+    for (let key in pages) {
+        let page = pages[key];
+        tasks.push(
+            gulp.src(page.src)
+                .pipe(sass().on('error', sass.logError))
+                .pipe(autoprefixer())
+                .pipe(mincss({compatibility: 'ie8'}))
+                .pipe(purgecss({
+                    content: [page.content]
+                }))
+                .pipe(concat(key + '.min.css'))
+                .pipe(gulp.dest(globs.sass.dest))
+                .pipe(browserSync.stream())
+        );
+    }
+    return ms(tasks);
 });
 
 // Copy static to public
